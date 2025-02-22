@@ -1,22 +1,28 @@
-<svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="7.56165" width="11.5068" height="3.94521" fill="black"/>
-<rect x="3.94519" y="3.61644" width="3.94521" height="3.94521" fill="black"/>
-<rect x="18.7397" y="3.61644" width="3.94521" height="3.94521" fill="black"/>
-<rect x="22.3562" y="7.23288" width="3.94521" height="3.94521" fill="black"/>
-<rect x="25.9727" y="3.61644" width="3.94521" height="3.94521" fill="black"/>
-<rect x="40.4384" y="3.61644" width="3.94521" height="3.94521" fill="black"/>
-<rect x="40.4384" y="18.411" width="3.94521" height="3.94521" fill="black"/>
-<rect x="36.8219" y="22.0274" width="3.94521" height="3.94521" fill="black"/>
-<rect x="33.2054" y="25.6438" width="3.94521" height="3.94521" fill="black"/>
-<rect x="29.589" y="29.2603" width="3.94521" height="3.94521" fill="black"/>
-<rect x="25.9727" y="32.8767" width="3.94521" height="3.94521" fill="black"/>
-<rect x="22.0273" y="36.4931" width="4.27397" height="3.94521" fill="black"/>
-<rect x="18.411" y="32.8767" width="3.94521" height="3.94521" fill="black"/>
-<rect x="14.7946" y="29.2603" width="3.94521" height="3.94521" fill="black"/>
-<rect x="11.1781" y="25.6438" width="3.94521" height="3.94521" fill="black"/>
-<rect x="7.56165" y="22.0274" width="3.94521" height="3.94521" fill="black"/>
-<rect x="3.94519" y="18.411" width="3.94521" height="3.94521" fill="black"/>
-<rect x="29.589" width="11.5068" height="3.94521" fill="black"/>
-<rect x="44.0548" y="7.23288" width="3.94521" height="11.5068" fill="black"/>
-<rect y="7.23288" width="4.27397" height="11.5068" fill="black"/>
+<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="6.57568" y="3.01367" width="12.3288" height="18.6301" fill="#DADADA"/>
+<rect x="21.918" y="3.28711" width="11.7808" height="18.3562" fill="#DADADA"/>
+<rect x="12.6025" y="6.02686" width="15.0685" height="21.3699" fill="#DADADA"/>
+<rect x="18.356" y="27.397" width="3.56164" height="3.28767" fill="#DADADA"/>
+<rect x="33.6987" y="6.02686" width="3.28767" height="9.58904" fill="#DADADA"/>
+<rect x="3.56152" y="6.02686" width="3.28767" height="9.58904" fill="#DADADA"/>
+<rect x="6.30127" width="9.58904" height="3.28767" fill="black"/>
+<rect x="3.2876" y="3.01367" width="3.28767" height="3.28767" fill="black"/>
+<rect x="15.6162" y="3.01367" width="3.28767" height="3.28767" fill="black"/>
+<rect x="18.6299" y="6.02734" width="3.28767" height="3.28767" fill="black"/>
+<rect x="21.644" y="3.01367" width="3.28767" height="3.28767" fill="black"/>
+<rect x="33.6987" y="3.01367" width="3.28767" height="3.28767" fill="black"/>
+<rect x="33.6987" y="15.3428" width="3.28767" height="3.28767" fill="black"/>
+<rect x="30.6846" y="18.356" width="3.28767" height="3.28767" fill="black"/>
+<rect x="27.6714" y="21.3701" width="3.28767" height="3.28767" fill="black"/>
+<rect x="24.6572" y="24.3838" width="3.28767" height="3.28767" fill="black"/>
+<rect x="21.644" y="27.3975" width="3.28767" height="3.28767" fill="black"/>
+<rect x="18.356" y="30.4111" width="3.56164" height="3.28767" fill="black"/>
+<rect x="15.3428" y="27.3975" width="3.28767" height="3.28767" fill="black"/>
+<rect x="12.3286" y="24.3838" width="3.28767" height="3.28767" fill="black"/>
+<rect x="9.31543" y="21.3701" width="3.28767" height="3.28767" fill="black"/>
+<rect x="6.30127" y="18.356" width="3.28767" height="3.28767" fill="black"/>
+<rect x="3.2876" y="15.3428" width="3.28767" height="3.28767" fill="black"/>
+<rect x="24.6572" width="9.58904" height="3.28767" fill="black"/>
+<rect x="36.7124" y="6.02734" width="3.28767" height="9.58904" fill="black"/>
+<rect y="6.02734" width="3.56164" height="9.58904" fill="black"/>
 </svg>

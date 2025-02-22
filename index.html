@@ -21,7 +21,7 @@
         <div id="game-intro">
             <header>
                 <h1>Happy Cat</h1>
-                <h2>Keep your cat active and fed.</h2>
+                <h2>Catch as many fish as you can!</h2>
             </header>
                 
             <div class="content-container">
@@ -97,7 +97,7 @@
                 <button class="button" id="playButton">Play</button>
                 
                 <div id="sound-toggle">
-                    <img src="sounds/sound_is_on.svg" alt="Click to turn off sound">
+                    <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
                     <h3>Music On</h3>
                 </div>
             </div>
@@ -106,11 +106,15 @@
         <!-- #game-screen is initially hidden using CSS style display: none -->
         <div id="game-screen">
             <div id="hearts-container">
-            <img src="/img/heart_empty.svg" id="heart1">
-            <img src="/img/heart_empty.svg" id="heart2">
-            <img src="/img/heart_empty.svg" id="heart3">
-            <img src="/img/heart_empty.svg" id="heart4">
-            <img src="/img/heart_empty.svg" id="heart5">
+                <div id="hearts-wrapper">
+                    <div id="hearts">
+                        <img src="/img/heart_empty.svg" id="heart1">
+                        <img src="/img/heart_empty.svg" id="heart2">
+                        <img src="/img/heart_empty.svg" id="heart3">
+                        <img src="/img/heart_empty.svg" id="heart4">
+                        <img src="/img/heart_empty.svg" id="heart5">
+                    </div>
+                </div>
             </div>
             <div class="cats-container">
                 <div class ="cat">
@@ -155,18 +159,18 @@
     <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
 
 <!-- GAME AUDIO FILES -->
-    <audio id="play-game-song" src="sounds/play-game.mp3"></audio>
-    <audio id="move-cat-sound" src="sounds/move-cat.mp3"></audio>
-    <audio id="game-start-sound" src="sounds/game-start.mp3"></audio>
-    <audio id="click-sound" src="sounds/click.mp3"></audio>
-    <audio id="click-toggle" src="sounds/click-toggle.mp3"></audio>
-    <audio id="game-over-sound" src="sounds/lose_1.mp3"></audio>
+    <audio id="play-game-song" src="audio/play-game.mp3"></audio>
+    <audio id="move-cat-sound" src="audio/move-cat.mp3"></audio>
+    <audio id="game-start-sound" src="audio/game-start.mp3"></audio>
+    <audio id="click-sound" src="audio/click.mp3"></audio>
+    <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
+    <audio id="game-over-sound" src="audio/lose_1.mp3"></audio>
 
 <!-- GAME END AUDIO FILES -->
-    <audio id="purr" src="sounds/rico-purr.mp3"></audio>
-    <audio id="miaow" src="sounds/cat-meow.mp3"></audio>
-    <audio id="click-sound" src="sounds/click.mp3"></audio>
-    <audio id="click-toggle" src="sounds/click-toggle.mp3"></audio>
+    <audio id="purr" src="audio/rico-purr.mp3"></audio>
+    <audio id="miaow" src="audio/cat-meow.mp3"></audio>
+    <audio id="click-sound" src="audio/click.mp3"></audio>
+    <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
       
       
 <!-- JS FILES -->
