@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Happy Cat</title>
+        
+        <link rel="stylesheet" href="./styles/normalize.css">
+        <link rel="stylesheet" href="./styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    </head>
+
+  <body class="background">
+    <main>
+        <!-- #game-intro is initially shown on the game start screen -->
+        <div id="game-intro">
+            <header>
+                <h1>Happy Cat</h1>
+                <h2>Keep your cat active and fed.</h2>
+            </header>
+                
+            <div class="content-container">
+                <div class="cats-container">
+                    <div class ="nit" id="nit-cat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
+                            <g id="Nit">
+                            <g id="Cat_Body_Nit">
+                            <path id="Union_Nit" fill-rule="evenodd" clip-rule="evenodd" d="M168.199 6.12697V17.8649V59.1444V105.01C168.199 113.161 164.656 120.484 159.026 125.523V157.757C159.026 164.089 153.893 169.223 147.56 169.223C141.227 169.223 136.093 164.089 136.093 157.757V132.53H131.507V157.757C131.507 164.089 126.373 169.223 120.04 169.223C113.707 169.223 108.574 164.089 108.574 157.757V132.53H81.0538V157.757C81.0538 164.089 75.9201 169.223 69.5873 169.223C63.2545 169.223 58.1208 164.089 58.1208 157.757V132.53H55.063V157.757C55.063 164.089 49.9293 169.223 43.5965 169.223C37.2637 169.223 32.13 164.089 32.13 157.757V132.53V124.886V83.6061L32.1299 83.6062C4.6103 68.3175 -0.398115 34.6823 0.0236505 22.4513C0.635199 4.71645 29.0722 0.282725 30.6011 25.5091C30.6011 39.2689 35.1877 46.9133 48.1831 59.1442L48.1832 59.1444L87.1693 59.1444V17.8649V6.54784C87.1693 1.34814 93.2467 -1.47927 97.224 1.87004L116.218 17.8649H137.622L158.264 1.35157C162.268 -1.85178 168.199 0.999096 168.199 6.12697Z" fill="#22201D"/>
+                            </g>
+                            <g id="Face_Nit">
+                            <g id="Eye_Right_Open_Nit">
+                            <circle id="Ellipse 2" cx="147.56" cy="47.678" r="12.9954" fill="#FED23E"/>
+                            <circle id="Ellipse 3" cx="146.795" cy="48.4423" r="9.17322" fill="#22201D"/>
+                            <line id="Line 1" x1="158.579" y1="33.0439" x2="159.94" y2="31.0015" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            <line id="Line 2" x1="153.992" y1="31.5151" x2="155.353" y2="29.4727" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            </g>
+                            <g id="Eye_Left_Open_Nit">
+                            <circle id="Ellipse 2_2" cx="107.809" cy="47.678" r="12.9954" fill="#FED23E"/>
+                            <circle id="Ellipse 3_2" cx="108.573" cy="48.4423" r="9.17322" fill="#22201D"/>
+                            <line id="Line 3" x1="1.52887" y1="-1.52887" x2="3.98355" y2="-1.52887" transform="matrix(-0.5547 -0.83205 -0.83205 0.5547 94.79 35.1641)" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            <line id="Line 4" x1="1.52887" y1="-1.52887" x2="3.98355" y2="-1.52887" transform="matrix(-0.5547 -0.83205 -0.83205 0.5547 99.3766 33.6353)" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            </g>
+                            <g id="Muzzle_Nit">
+                            <path id="Ellipse 5" d="M127.684 60.6733C127.684 66.7888 125.289 68.3177 122.333 68.3177C119.378 68.3177 116.982 65.5797 116.982 62.2022" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            <path id="Ellipse 6" d="M127.684 60.6733C127.684 66.7888 130.08 68.3177 133.035 68.3177C135.991 68.3177 138.386 65.5797 138.386 62.2022" stroke="#FFF6E4" stroke-width="3.05774" stroke-linecap="round"/>
+                            <path id="Ellipse 7" d="M132.271 56.8512C132.271 57.5957 131.85 58.3419 131.024 58.9319C130.199 59.5208 129.021 59.909 127.684 59.909C126.348 59.909 125.169 59.5208 124.345 58.9319C123.519 58.3419 123.098 57.5957 123.098 56.8512C123.098 56.1067 123.519 55.3606 124.345 54.7706C125.169 54.1817 126.348 53.7935 127.684 53.7935C129.021 53.7935 130.199 54.1817 131.024 54.7706C131.85 55.3606 132.271 56.1067 132.271 56.8512Z" fill="#FFF6E4" stroke="#FFF6E4" stroke-width="1.52887"/>
+                            </g>
+                            <g id="Ears_Nit">
+                            <path id="Vector 5" d="M91.756 9.25516V17.1005C91.756 17.9449 92.4405 18.6294 93.2849 18.6294H105.053C106.566 18.6294 107.16 16.6675 105.901 15.8284L94.1329 7.98306C93.1169 7.30572 91.756 8.03406 91.756 9.25516Z" fill="#FFF6E4"/>
+                            <path id="Vector 6" d="M163.613 8.49076V16.3361C163.613 17.1805 162.928 17.865 162.084 17.865H150.316C148.803 17.865 148.209 15.9031 149.468 15.064L161.236 7.21866C162.252 6.54131 163.613 7.26965 163.613 8.49076Z" fill="#FFF6E4"/>
+                            </g>
+                            </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class ="dia" id="dia-cat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
+                            <g id="Dia">
+                            <g id="Cat_Body_Dia">
+                            <path id="Union_Dia" fill-rule="evenodd" clip-rule="evenodd" d="M0.503891 6.58888V18.3268V59.6063V105.472C0.503891 113.623 4.04706 120.946 9.67711 125.985V158.218C9.67711 164.551 14.8109 169.685 21.1436 169.685C27.4764 169.685 32.6102 164.551 32.6102 158.218V132.992H37.1968V158.218C37.1968 164.551 42.3305 169.685 48.6633 169.685C54.9961 169.685 60.1298 164.551 60.1298 158.218V132.992H87.6495V158.218C87.6495 164.551 92.7833 169.685 99.1161 169.685C105.449 169.685 110.583 164.551 110.583 158.218V132.992H113.64V158.218C113.64 164.551 118.774 169.685 125.107 169.685C131.44 169.685 136.573 164.551 136.573 158.218V132.992V125.348V84.0681L136.573 84.0681C164.093 68.7794 169.101 35.1442 168.68 22.9133C168.068 5.17836 139.631 0.744639 138.102 25.971C138.102 39.7308 133.516 47.3752 120.52 59.6062L120.52 59.6063L81.534 59.6063V18.3268V7.00976C81.534 1.81005 75.4567 -1.01736 71.4793 2.33195L52.4855 18.3268H31.0813L10.4397 1.81349C6.43549 -1.38987 0.503891 1.46101 0.503891 6.58888Z" fill="white"/>
+                            </g>
+                            <path id="Intersect" fill-rule="evenodd" clip-rule="evenodd" d="M138.376 23.3156C141.679 1.08757 168.091 5.82848 168.68 22.9133C168.749 24.9262 168.671 27.5189 168.371 30.5142L138.376 23.3156ZM0.503891 76.647V105.472C0.503891 113.623 4.04706 120.946 9.67711 125.985V156.105C16.8159 152.821 23.6947 148.175 24.9658 142.165C27.7688 128.915 31.6929 99.6628 24.9658 88.6549C20.0679 80.6402 9.19945 77.5423 0.503891 76.647ZM30.3015 17.7029L10.4397 1.81349C6.43549 -1.38987 0.503891 1.46101 0.503891 6.58888V18.3268V29.0279C9.1371 28.9038 21.6084 24.0194 30.3015 17.7029ZM128.209 51.7527C126.061 54.2143 123.514 56.7885 120.52 59.6062L120.52 59.6063L81.534 59.6064C81.534 59.6064 76.183 64.9574 79.2407 76.4239C82.2985 87.8905 95.8974 93.8638 105.232 93.2415C127.817 91.7358 129.148 64.0316 128.209 51.7527Z" fill="#827B79"/>
+                            <g id="Face_Dia">
+                            <g id="Eye_Right_Open_Dia">
+                            <circle id="Ellipse 2" cx="12.9954" cy="12.9954" r="12.9954" transform="matrix(-1 0 0 1 34.139 35.1445)" fill="#96DBB9"/>
+                            <circle id="Ellipse 3" cx="9.17322" cy="9.17322" r="9.17322" transform="matrix(-1 0 0 1 31.0813 39.731)" fill="#22201D"/>
+                            <line id="Line 1" x1="1.52887" y1="-1.52887" x2="3.98355" y2="-1.52887" transform="matrix(-0.5547 -0.83205 -0.83205 0.5547 9.70081 35.626)" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            <line id="Line 2" x1="1.52887" y1="-1.52887" x2="3.98355" y2="-1.52887" transform="matrix(-0.5547 -0.83205 -0.83205 0.5547 14.2875 34.0972)" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            </g>
+                            <g id="Eye_Left_Open_Dia">
+                            <circle id="Ellipse 2_2" cx="12.9954" cy="12.9954" r="12.9954" transform="matrix(-1 0 0 1 73.8896 35.1445)" fill="#96DBB9"/>
+                            <circle id="Ellipse 3_2" cx="9.17322" cy="9.17322" r="9.17322" transform="matrix(-1 0 0 1 69.3031 39.731)" fill="#22201D"/>
+                            <line id="Line 3" x1="73.4893" y1="33.5058" x2="74.8509" y2="31.4634" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            <line id="Line 4" x1="68.9027" y1="31.977" x2="70.2644" y2="29.9346" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            </g>
+                            <g id="Muzzle">
+                            <path id="Ellipse 5" d="M41.019 61.1353C41.019 67.2507 43.4147 68.7796 46.37 68.7796C49.3253 68.7796 51.7211 66.0416 51.7211 62.6641" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            <path id="Ellipse 6" d="M41.019 61.1353C41.019 67.2507 38.6232 68.7796 35.6679 68.7796C32.7126 68.7796 30.3169 66.0416 30.3169 62.6641" stroke="#5A5351" stroke-width="3.05774" stroke-linecap="round"/>
+                            <ellipse id="Ellipse 7" cx="5.35105" cy="3.82218" rx="5.35105" ry="3.82218" transform="matrix(-1 0 0 1 46.37 53.491)" fill="#5A5351"/>
+                            </g>
+                            <g id="Ears">
+                            <path id="Vector 5" d="M76.9474 9.71707V17.5624C76.9474 18.4068 76.2629 19.0913 75.4185 19.0913H63.6505C62.1378 19.0913 61.5438 17.1294 62.8024 16.2903L74.5705 8.44498C75.5865 7.76763 76.9474 8.49597 76.9474 9.71707Z" fill="#FFC0CB"/>
+                            <path id="Vector 6" d="M5.09045 8.95267V16.798C5.09045 17.6424 5.77495 18.3269 6.61933 18.3269H18.3874C19.9001 18.3269 20.4941 16.365 19.2355 15.5259L7.46739 7.68057C6.45137 7.00323 5.09045 7.73157 5.09045 8.95267Z" fill="#FFC0CB"/>
+                            </g>
+                            </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <button class="button" id="playButton">Play</button>
+                
+                <div id="sound-toggle">
+                    <img src="sounds/sound_is_on.svg" alt="Click to turn off sound">
+                    <h3>Music On</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!-- #game-screen is initially hidden using CSS style display: none -->
+        <div id="game-screen">
+            <div class="cats-container">
+                <div class ="cat">
+                    <img src="img/dia_happy_left.svg" alt="Cat Dia">
+                </div>
+    
+                <div id="sound-toggle-play">
+                        <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
+                        <h3>Music On</h3>
+                </div>
+            </div>
+        </div>
+        
+    
+        <!-- #game-end is initially hidden using CSS style display: none -->
+        <div id="game-end">
+            <header>
+                <h1>GAME OVER</h1>
+            </header>
+    
+            <div class="content-container">
+                <div class="cats-container">
+                        <img src="/img/cats_sad.svg" alt="Nit is Sad">
+                </div>
+                <button class="button" id="playButton">Play Again</button>
+                <div id="sound-toggle">
+                    <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
+                    <h3>Purr On</h3>
+                </div>
+            </div>
+        </div>
+       
+        
+</main>
+
+<!-- INTRO AUDIO FILES -->
+    <audio id="purr" src="audio/rico-purr.mp3"></audio>
+    <audio id="miaow" src="audio/cat-meow.mp3"></audio>
+    <audio id="game-start-sound" src="audio/game-start.mp3"></audio>
+    <audio id="intro-song" src="audio/intro-song.mp3"></audio>
+    <audio id="click-sound" src="audio/click.mp3"></audio>
+    <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
+
+<!-- GAME AUDIO FILES -->
+    <audio id="play-game-song" src="sounds/play-game.mp3"></audio>
+    <audio id="move-cat-sound" src="sounds/move-cat.mp3"></audio>
+    <audio id="game-start-sound" src="sounds/game-start.mp3"></audio>
+    <audio id="click-sound" src="sounds/click.mp3"></audio>
+    <audio id="click-toggle" src="sounds/click-toggle.mp3"></audio>
+    <audio id="game-over-sound" src="sounds/lose_1.mp3"></audio>
+
+<!-- GAME END AUDIO FILES -->
+    <audio id="purr" src="sounds/rico-purr.mp3"></audio>
+    <audio id="miaow" src="sounds/cat-meow.mp3"></audio>
+    <audio id="click-sound" src="sounds/click.mp3"></audio>
+    <audio id="click-toggle" src="sounds/click-toggle.mp3"></audio>
+      
+      
+<!-- JS FILES -->
+    <script src="js/index.js"></script> 
+    <script src="js/cat.js"></script>
+    <script src="js/objects.js"></script>
+    <script src="js/game.js"></script>  
+ 
+
+</body>
+</html>
