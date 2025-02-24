@@ -20,6 +20,7 @@ class Game {
     this.gameIsOver = false;
     this.gameIntervalId;
     this.gameLoopFrequency = 1000/60; 
+
 }
 
     start(){
@@ -51,8 +52,19 @@ class Game {
         console.log("Update Running");
     }
 
-    catSelect(){
-        console.log("Cat Selected");
+    catSelect(selection){
+        if(selection === "dia"){
+            this.cat = new Cat(this.gameScreen, "dia");
+            this.cat.element.src = "img/dia_happy_left.svg";
+        }
+        else if(selection === "nit"){
+            this.cat = new Cat(this.gameScreen, "nit");
+            this.cat.element.src = "img/nit_happy_left.svg"; 
+        }
+
+        this.gameScreen.appendChild(this.cat.element);
+        
+        console.log("Cat Selected:" + selection);
     }
     
     collectPoints(){

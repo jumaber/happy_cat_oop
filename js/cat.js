@@ -1,24 +1,45 @@
-class Cat {
-    constructor(gameScreen, left, width, height){
-        // gameScreen div reference
-        this.gameScreen = gameScreen;
 
-        //Cat position control
-        this.left = left;
+class Cat {
+    constructor(gameScreen, type, left = 650, width = 160, height = 160, top = 400) {
+        this.gameScreen = gameScreen;
+        this.type = type; // "dia" or "nit"
+        this.positionX = left;  // use positionX for clarity
         this.width = width;
         this.height = height;
-
-        //Cat movement control
+        this.top = top;
         this.directionX = 0;
+
+        this.element = document.createElement("img");
+        this.element.style.position = "absolute";
+        this.element.style.left = this.positionX + "px";
+        this.element.style.width = this.width + "px";
+        this.element.style.height = this.height + "px";
+        this.element.style.top = this.top + "px";
+
     }
-    
-    renderCat(){
-        console.log("Cat Rendered");
+  
+    move(pixels){
+        this.positionX += pixels;
+
+        // Setting the maximum movement range of the cat, which is the screen size
+        const maxPosition = this.gameScreen.offsetWidth - this.width; //size of the screen minus the size of the cat
+        if (this.positionX < 0) { // handle the left side (where it starts at 0)
+            this.positionX = 0;
+        }
+        else if (this.positionX > maxPosition) { // handle the right side (where the screen finishes)
+            this.positionX = maxPosition;
+        }
+        this.renderCat();
+        }
+       
+
+    renderCat() {
+    // Update DOM based on positionX
+    this.element.style.left = this.positionX + "px";
+
+    console.log("Cat Rendered");
     }
-    
-    move(){
-        console.log("Cat Moving");
-    }
+
 
     collect(){
         console.log("Collected Points");
