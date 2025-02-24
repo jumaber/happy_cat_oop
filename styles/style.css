@@ -3,12 +3,12 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Optional: prevents scrolling */
+    overflow: hidden; /* Pevents scrolling */
 }
 
 .background {
-background: var(--Background-Happy-Cat, linear-gradient(180deg, #91D8CB 0%, #91D8CB 58%, #9DEE90 58%, #9DEE90 100%));
-background-repeat: no-repeat;
+    background: var(--Background-Happy-Cat, linear-gradient(180deg, #91D8CB 0%, #91D8CB 58%, #9DEE90 58%, #9DEE90 100%));
+    background-repeat: no-repeat;
 }
 
 
@@ -51,7 +51,7 @@ h3{
 /********* GAME INTRO SCREEN *********/
 
 #game-intro {
-    /* display: none; */
+    display: block;
 }
 
 header {
@@ -135,12 +135,12 @@ header {
 } 
 
 .button:hover {
-  background-color: #FFC700; /* Slightly darker yellow */
+    background-color: #FFC700; /* Slightly darker yellow */
 }
 
 .button:active {
-  transform: translate(0px, 3px);
-  box-shadow: 0px 4px 4px 0px #00000050;
+    transform: translate(0px, 3px);
+    box-shadow: 0px 4px 4px 0px #00000050;
 }
 
 #sound-toggle {
@@ -167,7 +167,8 @@ header {
     border-radius: 8px;
     padding: 8px;
 }
-#hearts {
+
+#hearts-score {
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -180,12 +181,10 @@ header {
 
 .cat{
     position: absolute;
-    bottom: 50%; /* Starting position */
+    bottom: 50%;
     top: 52%;
-    transition: bottom 0.3s ease; /* Smooth down movement */
+    transition: bottom 0.3s ease; 
 }
-
-
 
 /* Falling Items */
 

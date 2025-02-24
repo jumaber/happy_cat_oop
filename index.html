@@ -8,7 +8,6 @@
 
         <title>Happy Cat</title>
         
-        <link rel="stylesheet" href="./styles/normalize.css">
         <link rel="stylesheet" href="./styles/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +93,7 @@
                     </div>
                 </div>
 
-                <button class="button" id="playButton">Play</button>
+                <button class="button" id="play-button">Play</button>
                 
                 <div id="sound-toggle">
                     <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
@@ -107,7 +106,7 @@
         <div id="game-screen">
             <div id="hearts-container">
                 <div id="hearts-wrapper">
-                    <div id="hearts">
+                    <div id="hearts-score">
                         <img src="/img/heart_empty.svg" id="heart1">
                         <img src="/img/heart_empty.svg" id="heart2">
                         <img src="/img/heart_empty.svg" id="heart3">
@@ -139,7 +138,7 @@
                 <div class="cats-container">
                         <img src="/img/cats_sad.svg" alt="Nit is Sad">
                 </div>
-                <button class="button" id="playButton">Play Again</button>
+                <button class="button" id="restart-button">Play Again</button>
                 <div id="sound-toggle">
                     <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
                     <h3>Purr On</h3>
@@ -174,9 +173,9 @@
       
       
 <!-- JS FILES -->
-    <script src="js/index.js"></script> 
+    <script src="js/script.js"></script> 
     <script src="js/cat.js"></script>
-    <script src="js/objects.js"></script>
+    <script src="js/obstacles.js"></script>
     <script src="js/game.js"></script>  
  
 
