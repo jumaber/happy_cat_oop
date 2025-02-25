@@ -61,9 +61,20 @@ window.onload = function () {
   document.addEventListener("keyup", (event) => {
     if (!game.cat) return;
     if (event.key === "ArrowLeft") {
+      if(game.cat.type === "dia"){
       game.cat.element.src = "img/dia_default_left.svg"
+      }
+      if(game.cat.type === "nit"){
+      game.cat.element.src = "img/nit_default_left.svg"
+      }
+
     } else if (event.key === "ArrowRight") {
+ if(game.cat.type === "dia"){
       game.cat.element.src = "img/dia_default_right.svg"
+      }
+      if(game.cat.type === "nit"){
+      game.cat.element.src = "img/nit_default_right.svg"
+      }
     }
   });
 };
