@@ -92,11 +92,14 @@ class Game {
     });
     
     console.log("Update Running, score:", this.score);
-    
+
+        this.displayPoints();
+
         // Check win condition: 25 points means win (5 hearts * 5 points each)
         if (this.score >= 25) {
             this.gameWon();
         }
+
     }
 
 
@@ -144,12 +147,32 @@ class Game {
     }
 
     // displayPoints(): (Placeholder) Updates the score display on the screen
-    displayPoints(){
-        console.log("Points Displayed");
-    }
+    displayPoints() {
+        // Select all heart images inside the hearts container
+        const hearts = document.querySelectorAll("#hearts-score img");
+        // Calculate how many hearts should be filled: one filled heart per 5 points
+        const filledCount = Math.floor(this.score / 5);
+        
+        // Loop through each heart image
+        hearts.forEach((heart, index) => {
+            // If the heart's index is less than filledCount, fill it; otherwise, empty it.
+            if (index < filledCount) {
+            heart.src = "img/heart_filled.svg";  // ensure this image exists
+            } else {
+            heart.src = "img/heart_empty.svg";   // ensure this image exists
+            }
+        });
+        console.log("Score:", this.score, "Filled Hearts:", filledCount);
+        }
+
 
     // gameOver(): (Placeholder) Handles game over logic
     gameOver(){
+ 
+        // Hide the intro screen and display the game screen
+        this.gameScreen.style.display = "none";
+        this.gameEndScreen.style.display = "block";
+
         console.log("Game Over");
     }
 
