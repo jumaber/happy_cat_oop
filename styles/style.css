@@ -209,14 +209,22 @@ header h1, header h2 {
     background-image: url("bomb.svg");
 }
 
-/* .sound-toggle-container{
+.toggle-container{
+    display:block;
+    position: absolute;
+    top: 750px;
+}
+
+ .toggle-wrapper{
     display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-    justify-content: space-between;
-    margin-bottom: 100px;
-} */
-#sound-toggle-play {
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+#sound-toggle-play, #restart-game, #pause-game {
     display: flex;
     width: 100vw;
     justify-content: center;

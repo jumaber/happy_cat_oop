@@ -106,14 +106,15 @@ class Game {
     // catSelect(selection): Initializes the cat based on player's selection ("dia" or "nit")
     catSelect(selection){
         if(selection === "dia"){
-            this.cat = new Cat(this.gameScreen, "dia");
+            this.cat = new Cat(this.gameScreen, "dia")
+
             // Set the initial cat image for Dia
-            this.cat.element.src = "img/dia_happy_left.svg";
+            this.cat.element.src = "img/dia_default_left.svg";
         }
         else if(selection === "nit"){
             this.cat = new Cat(this.gameScreen, "nit");
             // Set the initial cat image for Nit
-            this.cat.element.src = "img/nit_happy_left.svg"; 
+            this.cat.element.src = "img/nit_default_left.svg"; 
         }
 
         // Append the cat's DOM element to the game screen
@@ -166,18 +167,32 @@ class Game {
         }
 
 
-    // gameOver(): (Placeholder) Handles game over logic
+    // gameOver(): Handles game over logic
     gameOver(){
  
-        // Hide the intro screen and display the game screen
+        // Hide the game screen and display the game end screen
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "block";
 
         console.log("Game Over");
     }
 
-    // gameWon(): (Placeholder) Handles game win logic
+    // gameWon(): Handles game win logic
     gameWon(){
+        const winnerCats = document.querySelector(".cats-container img");
+        const headerGameEnd = document.querySelector("header h1");
+
+        // Hide the game screen and display the game end screen
+
+        this.gameScreen.style.display = "none";
+        this.gameEndScreen.style.display = "block";
+        
+        // Change the content in the Game End screen
+        headerGameEnd.innerText = "YOU WON!";
+        winnerCats.src = "img/heart_filled.svg";
         console.log("Winner!");
     }
+
+    pauseGame(){}
+
 }

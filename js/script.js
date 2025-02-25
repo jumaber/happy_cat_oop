@@ -50,6 +50,7 @@ window.onload = function () {
     if (!game.cat) return; // ensure a cat has been selected
     if (event.key === "ArrowLeft") {
       game.cat.move(-20);
+      moveCatSound.play();
       // Optionally, update the image or play sound inside move() or here
     } else if (event.key === "ArrowRight") {
       game.cat.move(20);
@@ -60,9 +61,9 @@ window.onload = function () {
   document.addEventListener("keyup", (event) => {
     if (!game.cat) return;
     if (event.key === "ArrowLeft") {
-      // Optionally revert image for left movement here
+      game.cat.element.src = "img/dia_default_left.svg"
     } else if (event.key === "ArrowRight") {
-      // Optionally revert image for right movement here
+      game.cat.element.src = "img/dia_default_right.svg"
     }
   });
 };

@@ -48,9 +48,9 @@ class Cat {
         // If moving left (pixels is negative), set the left-moving image.
         // Otherwise, set the default (or "happy") image for moving right.
         if (pixels < 0) {
-            this.element.src = this.type === "dia" ? "img/dia_left.svg" : "img/nit_left.svg";
+            this.element.src = this.type === "dia" ? "img/dia_move_left.svg" : "img/nit_move_left.svg";
         } else {
-            this.element.src = this.type === "dia" ? "img/dia_happy_left.svg" : "img/nit_happy_left.svg";
+            this.element.src = this.type === "dia" ? "img/dia_move_right.svg" : "img/nit_move_right.svg";
         }
 
         // Call renderCat() to update the DOM element's position based on the new state
