@@ -1,73 +1,82 @@
-
 class Cat {
     constructor(gameScreen, type, left = 650, width = 160, height = 160, top = 400) {
+        // Store a reference to the game screen container
         this.gameScreen = gameScreen;
-        this.type = type; // "dia" or "nit"
-        this.positionX = left;  // use positionX for clarity
+        // The type of cat selected ("dia" or "nit"), which may affect appearance and properties
+        this.type = type;
+        // Initial horizontal position (left side) of the cat
+        this.positionX = left;
+        // Dimensions for the cat's image; these may be controlled by CSS later, but here they're set in JS
         this.width = width;
         this.height = height;
+        // The vertical position (top) where the cat should appear on the screen
         this.top = top;
+        // A property to track horizontal movement velocity (not used for discrete key presses but useful for smooth movement)
         this.directionX = 0;
 
+        // Create an image element to visually represent the cat
         this.element = document.createElement("img");
+        // Use absolute positioning so we can set exact coordinates on the game screen
         this.element.style.position = "absolute";
+        // Set the initial horizontal position using the positionX value
         this.element.style.left = this.positionX + "px";
+        // Set the dimensions of the cat image
         this.element.style.width = this.width + "px";
         this.element.style.height = this.height + "px";
+        // Set the vertical position using the top value
         this.element.style.top = this.top + "px";
-
     }
   
-    move(pixels){
+    // move(pixels): Moves the cat horizontally by the given pixel amount
+    move(pixels) {
+        // Update the cat's position by adding the movement amount
         this.positionX += pixels;
 
-        // Setting the maximum movement range of the cat, which is the screen size
-        const maxPosition = this.gameScreen.offsetWidth - this.width; //size of the screen minus the size of the cat
-        if (this.positionX < 0) { // handle the left side (where it starts at 0)
+        // Define the maximum allowed horizontal position so the cat doesn't go off-screen.
+        // This is the game screen's width minus the cat's width.
+        const maxPosition = this.gameScreen.offsetWidth - this.width;
+        // If the new position is less than 0, clamp it to 0 (left boundary)
+        if (this.positionX < 0) {
             this.positionX = 0;
         }
-        else if (this.positionX > maxPosition) { // handle the right side (where the screen finishes)
+        // If the new position exceeds the right boundary, clamp it to maxPosition
+        else if (this.positionX > maxPosition) {
             this.positionX = maxPosition;
         }
-        this.renderCat();
+
+        // Optional: Update the cat's image based on the direction of movement.
+        // If moving left (pixels is negative), set the left-moving image.
+        // Otherwise, set the default (or "happy") image for moving right.
+        if (pixels < 0) {
+            this.element.src = this.type === "dia" ? "img/dia_left.svg" : "img/nit_left.svg";
+        } else {
+            this.element.src = this.type === "dia" ? "img/dia_happy_left.svg" : "img/nit_happy_left.svg";
         }
+
+        // Call renderCat() to update the DOM element's position based on the new state
+        this.renderCat();
+    }
        
-
+    // renderCat(): Updates the visual position of the cat element on the screen.
     renderCat() {
-    // Update DOM based on positionX
-    this.element.style.left = this.positionX + "px";
-
-    console.log("Cat Rendered");
+        // Set the left style property to reflect the updated horizontal position
+        this.element.style.left = this.positionX + "px";
+        console.log("Cat Rendered");
     }
 
-
-    collect(){
+    // collect(): Placeholder for logic when the cat collects an item (like fish)
+    collect() {
         console.log("Collected Points");
     }
 
-    reset(){
+    // reset(): Placeholder for logic to reset the cat's state between game sessions
+    reset() {
         console.log("Cat Reseted");
     }
 
-      updateCat(){
+    // updateCat(): Placeholder for updating the cat's state on each game loop iteration.
+    // You might include boundary checking or other dynamic updates here.
+    updateCat() {
         console.log("Cat's boundaries and dynamic properties have been updated");
     }
-
 }
-
-
-
-// REQUIREMENTS FOR THE CAT //
-/*
-- The cat image must be selected in the starting screen
-    - Post MVP: each cat has different properties
-- The cat must appear in the game screen - renderCat(){}
-- The cat must be able to move left and right - move(){}
-    - The cat's image must change when moving to the correspondent side
-    - The cat's image must make a sound when moving 
-    - The cat's image must remain within the limit of the screen
-    - Post MVP: Jump
-- The cat must be able to collect fish and add to the counter - collect(){}
-- The position of the cat must be reset when there is a new game session - reset(){}
-- The cat's state must be updated in each game loop iteration - update()
-*/

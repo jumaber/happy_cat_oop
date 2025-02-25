@@ -43,16 +43,17 @@ window.onload = function () {
   // Restart the game
   restartButton.addEventListener("click", () => {
     location.reload();
+    
   });
 
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
   document.addEventListener("keydown", (event) => {
     if (!game.cat) return; // ensure a cat has been selected
     if (event.key === "ArrowLeft") {
-      game.cat.move(-10);
+      game.cat.move(-20);
       // Optionally, update the image or play sound inside move() or here
     } else if (event.key === "ArrowRight") {
-      game.cat.move(10);
+      game.cat.move(20);
       // Optionally, update the image or play sound inside move() or here
     }
   });
@@ -66,28 +67,3 @@ window.onload = function () {
     }
   });
 };
-
-
-
-// document.addEventListener("keydown", (event) => {
-//     if (!game.cat) return; // make sure a cat is selected
-//     if (event.key === "ArrowLeft") {
-//         game.cat.positionX -= 10;
-//         game.cat.element.style.left = game.cat.positionX + "px";
-//         // Update image and play sound as needed
-//     } else if (event.key === "ArrowRight") {
-//         game.cat.positionX += 10;
-//         game.cat.element.style.left = game.cat.positionX + "px";
-//         // Update image and play sound as needed
-//     }
-// });
-
-// document.addEventListener("keyup", (event) => {
-//     if (!game.cat) return;
-//     if (event.key === "ArrowLeft") {
-//         // Revert image for left
-//     } else if (event.key === "ArrowRight") {
-//         // Revert image for right
-//     }
-// });
-// }
