@@ -6,21 +6,45 @@ window.onload = function () {
   const gameScreen = document.getElementById("game-screen");
   const startButton = document.getElementById("play-button");
   const restartButton = document.getElementById("restart-button");
+  const soundToggle = document.querySelectorAll(".sound-toggle")
+  const soundToggleImage = document.querySelectorAll(".sound-toggle img");
+  const soundToggleText = document.querySelectorAll(".sound-toggle h3");
   
   // **** AUDIO **** //
   const miaow = document.getElementById("miaow");
   const introSong = document.getElementById("intro-song");
   const clickSound = document.getElementById("click-sound");
+  const clickToggle = document.getElementById("click-toggle")
+
 
   // Create a new Game instance
   const game = new Game();
 
 
-  // **** SOUNDS GAME INTRO SCREEN ****
+  // **** MUSIC GAME INTRO SCREEN ****
   document.addEventListener("mouseover", () => {
     introSong.play().catch(error => console.log("Autoplay blocked:", error));
     introSong.volume = 0.5;
-}, { once: true }); // This will play the sound only once
+    introSong.loop = true;
+    });
+
+    soundToggle.forEach((toggle, index) => {
+    toggle.addEventListener("click", () => {
+        if (soundToggleText[index].innerText === "Music On") {
+            introSong.pause();
+            clickToggle.play();
+            soundToggleText[index].innerText = "Music Off";
+            soundToggleImage[index].src = "audio/sound_is_off.svg";
+        } else {
+            introSong.play();
+            clickToggle.play();
+            soundToggleText[index].innerText = "Music On";
+            soundToggleImage[index].src = "audio/sound_is_on.svg";
+        }
+    });
+});
+
+
 
   // **** SELECT THE CAT **** 
 

@@ -61,10 +61,6 @@ header {
     width: 100vw;
 }
 
-header h1, header h2 {
-    margin: 16px 16px;
-}
-
 .content-container {
     position: absolute;
     top: 59%;
