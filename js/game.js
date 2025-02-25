@@ -12,10 +12,6 @@ class Game {
         // Dimensions: Set the game screen dimensions to the window size
         this.height = window.innerHeight;
         this.width = window.innerWidth;
-
-        // Score: Initialize score to 0 and get reference to the score display element
-        this.score = 0;
-        this.scoreHTML = document.getElementById("hearts-score");
         
         // Game control settings: initialize state and variables for the game loop
         this.gameIsOver = false;
@@ -24,6 +20,11 @@ class Game {
         
         // Spawn Rate: Define how frequently obstacles are spawned (in milliseconds)
         this.spawnRate = 1500; // spawn an obstacle every 1000 ms (1 second)
+
+        // Score: Initialize score to 0 and get reference to the score display element
+        this.score = 0; // Each fish is +1 point. With 25 points the user has won
+        this.scoreHTML = document.getElementById("hearts-score");
+        
     }
 
     // start(): Prepares the game screen and starts the game loop and obstacle spawner
@@ -63,23 +64,41 @@ class Game {
 
     // update(): Updates game objects (cat and obstacles) for each frame
     update() {
-        // Update the cat's state if it exists
-        if (this.cat) {
-            this.cat.updateCat();
-        }
-       // Update each obstacle and only keep those that are still active
-        this.obstacles = this.obstacles.filter(obstacle => obstacle.fall());
-        console.log("Update Running");
-
-        this.obstacles = this.obstacles.filter(obstacle => {
-        if (this.cat && obstacle.collide(this.cat, obstacle)) {
-            // If a collision occurs, remove the obstacle from the array
+    if (this.cat) {
+        this.cat.updateCat();
+    }
+    
+    // Process each obstacle:
+    this.obstacles = this.obstacles.filter(obstacle => {
+        
+        // First, check for collision between the obstacle and the cat
+        if (this.cat && obstacle.collide(this.cat)) {
+            // If a collision occurs, check the type of obstacle
+            if (obstacle.type === "fish") {
+                // For a fish collision, increase score by 1 and update display
+                this.score++;
+                console.log("Score:" + this.score)
+                this.displayPoints();
+            } else if (obstacle.type === "bomb") {
+                // For a bomb collision, trigger game over
+                this.gameOver();
+            }
+            // Remove the obstacle (do not keep it in the array)
             return false;
         }
-        return true;
+        // If no collision occurred, update the obstacle's fall() method.
+        // If fall() returns false (obstacle off-screen), it will be filtered out.
+        return obstacle.fall();
     });
-
+    
+    console.log("Update Running, score:", this.score);
+    
+        // Check win condition: 25 points means win (5 hearts * 5 points each)
+        if (this.score >= 25) {
+            this.gameWon();
+        }
     }
+
 
     // catSelect(selection): Initializes the cat based on player's selection ("dia" or "nit")
     catSelect(selection){
@@ -104,9 +123,11 @@ class Game {
     spawnObstacle() {
         // Define possible obstacle types
         const types = ["fish", "bomb"];
+        
         // Use weighted randomness: for example, 20% chance for bomb, 80% chance for fish
         let randomValue = Math.random();
         let randomType = randomValue < 0.2 ? "bomb" : "fish"; 
+        
         // Calculate a falling speed for the obstacle (adjust range as needed)
         const speed = Math.random() * 3 + 1; // Speed between 1 and 4 px per frame
         console.log("Calculated speed:", speed);
@@ -120,11 +141,6 @@ class Game {
         // Add the new obstacle to the obstacles array for updating in the game loop
         this.obstacles.push(obstacle);
         console.log("Obstacles Spawned");
-    }
-    
-    // collectPoints(): (Placeholder) Handles logic when points are collected
-    collectPoints(){
-        console.log("Points Collected");
     }
 
     // displayPoints(): (Placeholder) Updates the score display on the screen

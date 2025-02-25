@@ -53,24 +53,24 @@ class Obstacles {
     }
 
     // collide(obstacle): Checks if the obstacle has collided with the cat.
-    collide(cat, obstacle){
-        // Get the bounding rectangles of the cat and the obstacle for collision detection
-        const catRect = cat.element.getBoundingClientRect();
-        const obstacleRect = obstacle.element.getBoundingClientRect();
+   collide(cat) {
+    // Get the bounding rectangles of the cat and this obstacle
+    const catRect = cat.element.getBoundingClientRect();
+    const obsRect = this.element.getBoundingClientRect();
 
-        // Check if the rectangles intersect (basic AABB collision detection)
-        if (
-            catRect.left < obstacleRect.right &&
-            catRect.right > obstacleRect.left &&
-            catRect.top < obstacleRect.bottom &&
-            catRect.bottom > obstacleRect.top
-        ) {
-            obstacle.element.remove();
-            console.log("Collision detected: obstacle removed");
-            return true;
-        } else {
-        // No collision: return false
-        return false;
+    // Basic AABB collision detection
+    if (
+        catRect.left < obsRect.right &&
+        catRect.right > obsRect.left &&
+        catRect.top < obsRect.bottom &&
+        catRect.bottom > obsRect.top
+    ) {
+        // Collision detected: remove this obstacle from the DOM
+        this.element.remove();
+        console.log("Collision detected: obstacle removed");
+        return true;
     }
+    return false;
 }
+
 }

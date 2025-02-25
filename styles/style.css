@@ -152,10 +152,12 @@ header {
 /********* GAME SCREEN *********/
 
 #game-screen {
-    /* position: relative;
-    width: 100vw;
-    height: 100vh; */
-    display: none;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 100vw;
+   height: 100vh;
+   display: none;
 }
 
 #hearts-container {
@@ -163,6 +165,7 @@ header {
     justify-content: center;
     align-content: center;
     margin: 24px 16px;
+    width: 100vw;
 }
 
 #hearts-wrapper {
@@ -199,12 +202,19 @@ header {
     background-image: url("bomb.svg");
 }
 
-#sound-toggle-play {
-    position: absolute;
-    bottom: 20px;
+/* .sound-toggle-container{
     display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: space-between;
+    margin-bottom: 100px;
+} */
+#sound-toggle-play {
+    display: flex;
+    width: 100vw;
     justify-content: center;
     gap: 8px;
+    margin-bottom: 20px;
 }
 
 

@@ -43,7 +43,6 @@ window.onload = function () {
   // Restart the game
   restartButton.addEventListener("click", () => {
     location.reload();
-    
   });
 
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
