@@ -4,22 +4,42 @@ window.onload = function () {
   const diaCat = document.getElementById("dia-cat");
   const gameIntroScreen = document.getElementById("game-intro");
   const gameScreen = document.getElementById("game-screen");
-  const startButton = document.getElementById('play-button');
-  const restartButton = document.getElementById('restart-button');
+  const startButton = document.getElementById("play-button");
+  const restartButton = document.getElementById("restart-button");
+  
+  // **** AUDIO **** //
+  const miaow = document.getElementById("miaow");
+  const introSong = document.getElementById("intro-song");
+  const clickSound = document.getElementById("click-sound");
 
   // Create a new Game instance
   const game = new Game();
 
-  // **** SELECT THE CAT *** //
+
+  // **** SOUNDS GAME INTRO SCREEN ****
+  document.addEventListener("mouseover", () => {
+    introSong.play().catch(error => console.log("Autoplay blocked:", error));
+    introSong.volume = 0.5;
+}, { once: true }); // This will play the sound only once
+
+  // **** SELECT THE CAT **** 
 
   // Update the start button text when a cat is clicked
   nitCat.addEventListener("click", () => {
     startButton.innerText = "Play with Nit";
+    miaow.play();
   });
 
   diaCat.addEventListener("click", () => {
     startButton.innerText = "Play with Dia";
+    miaow.play();
   });
+
+  startButton.addEventListener("click", () =>{
+    clickSound.play();
+  });
+  
+
 
   // When the start button is clicked, create the selected cat and start the game
   startButton.addEventListener('click', () => {
@@ -39,10 +59,13 @@ window.onload = function () {
       game.start();
     }
   });
-
   // Restart the game
   restartButton.addEventListener("click", () => {
-    location.reload();
+    clickSound.play();
+
+    setTimeout(() => {
+       location.reload(); // Reload after a short delay of 0,2 seconds
+    }, 200);
   });
 
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
