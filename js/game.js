@@ -89,7 +89,7 @@ class Game {
         console.log("Update Running, score:", this.score);
 
         // Check for win condition
-        if (this.score >= 1) {
+        if (this.score >= 25) {
             this.gameWon();
         }
     }
@@ -160,10 +160,7 @@ class Game {
         const winnerCats = document.querySelector(".cats-container img");
 
         headerGameEnd.innerText = "YOU WON!";
-        winnerCats.src = "img/heart_filled.svg";
-
-        // Start confetti effect
-        startConfetti();
+        winnerCats.src = "img/winner.svg";
 
         console.log("Winner!");
     }
