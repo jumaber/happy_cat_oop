@@ -89,7 +89,7 @@ class Game {
         console.log("Update Running, score:", this.score);
 
         // Check for win condition
-        if (this.score >= 25) {
+        if (this.score >= 1) {
             this.gameWon();
         }
     }
@@ -162,6 +162,9 @@ class Game {
         headerGameEnd.innerText = "YOU WON!";
         winnerCats.src = "img/heart_filled.svg";
 
+        // Start confetti effect
+        startConfetti();
+
         console.log("Winner!");
     }
 
@@ -219,5 +222,55 @@ class Game {
         console.log("Game Restarted - Fresh Start");
     }
 
-    
+    toggleMusic(screen) {
+        // Define the audio elements
+        const introSong = document.getElementById("intro-song");
+        const playGameSong = document.getElementById("play-game-song");
+        const purr = document.getElementById("purr");
+
+        // Select the correct toggle button and text based on the screen
+        let soundToggle, soundToggleText, soundToggleImage;
+        if (screen === "intro") {
+            soundToggle = document.getElementById("sound-toggle-intro");
+            soundToggleText = document.querySelector("#sound-toggle-intro h3");
+            soundToggleImage = document.querySelector("#sound-toggle-intro img");
+        } else if (screen === "play") {
+            soundToggle = document.getElementById("sound-toggle-play");
+            soundToggleText = document.querySelector("#sound-toggle-play h3");
+            soundToggleImage = document.querySelector("#sound-toggle-play img");
+        } else if (screen === "end") {
+            soundToggle = document.getElementById("sound-toggle-end");
+            soundToggleText = document.querySelector("#sound-toggle-end h3");
+            soundToggleImage = document.querySelector("#sound-toggle-end img");
+        }
+
+        // Determine which song is currently playing
+        const activeSong = [introSong, playGameSong, purr].find(song => !song.paused);
+
+        // Toggle music on/off
+        if (activeSong) {
+            activeSong.pause();
+            soundToggleText.innerText = "Music Off";
+                if (screen === "end"){
+                    soundToggleText.innerText = "Purr Off";
+                }
+            soundToggleImage.src = "audio/sound_is_off.svg";
+        } else {
+            // Resume the correct music based on the screen
+            if (screen === "intro") {
+                introSong.play();
+            } else if (screen === "play") {
+                playGameSong.play();
+            } else if (screen === "end") {
+                purr.play();
+            }
+            soundToggleText.innerText = "Music On";
+                if (screen === "end"){
+                    soundToggleText.innerText = "Purr On";
+                }
+            soundToggleImage.src = "audio/sound_is_on.svg";
+        }
+    }
+
+
 }

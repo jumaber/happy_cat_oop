@@ -10,18 +10,6 @@ window.onload = function () {
   const nitStroke = document.getElementById("Union_Nit");
   const diaStroke = document.getElementById("Union_Dia");
 
-  const soundToggleIntro = document.getElementById("sound-toggle-intro");
-  const soundToggleTextIntro = document.querySelector("#sound-toggle-intro h3");
-  const soundToggleImageIntro = document.querySelector("#sound-toggle-intro img");
-
-  const soundTogglePlay = document.getElementById("sound-toggle-play");
-  const soundToggleTextPlay = document.querySelector("#sound-toggle-play h3");
-  const soundToggleImagePlay = document.querySelector("#sound-toggle-play img");
-
-  const soundToggleEnd = document.getElementById("sound-toggle-end");
-  const soundToggleTextEnd = document.querySelector("#sound-toggle-end h3");
-  const soundToggleImageEnd = document.querySelector("#sound-toggle-end img");
-
   
   // **** AUDIO **** //
   const miaow = document.getElementById("miaow");
@@ -36,59 +24,24 @@ window.onload = function () {
 
   // **** MUSIC GAME INTRO SCREEN ****
   document.addEventListener("mouseover", () => {
-    const introSong = document.getElementById("intro-song");
     introSong.play().catch(error => console.log("Autoplay blocked:", error));
     introSong.volume = 0.1;
 }, { once: true }); // This will play the sound only once
 
 
-    // Toggle for the Game Intro Screen
-  soundToggleIntro.addEventListener("click", () => {
-    if (soundToggleTextIntro.innerText === "Music On") {
-        introSong.pause();  // Change this from playGameSong to introSong
-        clickToggle.play();
-        soundToggleTextIntro.innerText = "Music Off";
-        soundToggleImageIntro.src = "audio/sound_is_off.svg";  // Corrected path
-    } else if (soundToggleTextIntro.innerText === "Music Off") {
-        introSong.play(); // Change this from playGameSong to introSong
-        clickToggle.play();
-        soundToggleTextIntro.innerText = "Music On";
-        soundToggleImageIntro.src = "audio/sound_is_on.svg";  // Corrected path
-    }
-  });
+  // **** TOGGLE MUSIC IN ALL SCREENS ****
+ document.getElementById("sound-toggle-intro").addEventListener("click", () => {
+    game.toggleMusic("intro");
+});
 
+document.getElementById("sound-toggle-play").addEventListener("click", () => {
+    game.toggleMusic("play");
+});
 
-
-    // // Toggle for the Game Screen
-    // soundTogglePlay.addEventListener("click", () => {
-    //   if (soundToggleTextPlay.innerText === "Music On") {
-    //       playGameSong.pause();
-    //       clickToggle.play();
-    //       soundToggleTextPlay.innerText = "Music Off";
-    //       soundToggleImagePlay.src = "sounds/sound_is_off.svg";
-    //     } else if (soundToggleTextPlay.innerText === "Music Off") {
-    //         playGameSong.play();
-    //         clickToggle.play();
-    //         soundToggleTextPlay.innerText = "Music On";
-    //         soundToggleImagePlay.src = "sounds/sound_is_on.svg";
-    //     }
-    //   });
-
-
-    // // Toggle for the Game End Screen
-    // soundToggleEnd.addEventListener("click", () => {
-    //   if (soundToggleTextEnd.innerText === "Music On") {
-    //       playGameSong.pause();
-    //       clickToggle.play();
-    //       soundToggleTextEnd.innerText = "Music Off";
-    //       soundToggleImageEnd.src = "sounds/sound_is_off.svg";
-    //     } else if (soundToggleTextEnd.innerText === "Music Off") {
-    //         playGameSong.play();
-    //         clickToggle.play();
-    //         soundToggleTextEnd.innerText = "Music On";
-    //         soundToggleImageEnd.src = "sounds/sound_is_on.svg";
-    //     }
-    //   });
+document.getElementById("sound-toggle-end").addEventListener("click", () => {
+    game.toggleMusic("end");
+});
+   
 
   // **** PAUSE THE GAME **** 
 
