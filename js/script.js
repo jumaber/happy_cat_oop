@@ -108,6 +108,13 @@ window.onload = function () {
       }
   });
 
+// **** RESTART THE GAME **** 
+
+const restart = document.getElementById("restart-game");
+
+restart.addEventListener("click", () => {
+  game.restart();
+});
 
      
 
