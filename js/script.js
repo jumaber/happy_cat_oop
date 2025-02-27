@@ -76,6 +76,7 @@ restart.addEventListener("click", () => {
   // Update the start button text when a cat is clicked
   nitCat.addEventListener("click", () => {
     miaow.play();
+    miaow.volume = 0.3;
     startButton.innerText = "Play with Nit";
     diaStroke.style.stroke = "none";
     diaStroke.style["stroke-width"] = "0px";
@@ -86,6 +87,7 @@ restart.addEventListener("click", () => {
 
   diaCat.addEventListener("click", () => {
     miaow.play();
+    miaow.volume = 0.3;
     startButton.innerText = "Play with Dia";
     nitStroke.style.stroke = "none";
     nitStroke.style["stroke-width"] = "0px";

@@ -45,6 +45,7 @@ class Game {
 
         setTimeout(() => {
             this.playGameSong.play();
+            this.playGameSong.loop = true;
             this.playGameSong.volume = 0.3;
         }, 300);
 
