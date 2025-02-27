@@ -5,6 +5,9 @@ class Game {
         this.gameScreen = document.getElementById("game-screen");
         this.gameEndScreen = document.getElementById("game-end");
         
+        // Audios Involved in more than one method:
+        this.playGameSong = document.getElementById("play-game-song");
+
         // Game objects: initially no cat is selected and obstacles array is empty
         this.cat = null;
         this.obstacles = [];
@@ -17,15 +20,18 @@ class Game {
         this.gameIsOver = false;
         this.gameIntervalId; // will hold the ID for the game loop interval
         this.gameLoopFrequency = 1000 / 60; // roughly 60 frames per second (16.67 ms per frame)
-        
+        this.isPaused = false;
+
         // Spawn Rate: Define how frequently obstacles are spawned (in milliseconds)
         this.spawnRate = 1500; // spawn an obstacle every 1000 ms (1 second)
 
         // Score: Initialize score to 0 and get reference to the score display element
         this.score = 0; // Each fish is +1 point. With 25 points the user has won
         this.scoreHTML = document.getElementById("hearts-score");
-        
+        this.previousFilledCount = 0; // Initialize previous filled heart count
+
     }
+    
 
     // start(): Prepares the game screen and starts the game loop and obstacle spawner
     start(){
@@ -36,6 +42,19 @@ class Game {
         // Hide the intro screen and display the game screen
         this.gameIntroScreen.style.display = "none";
         this.gameScreen.style.display = "block";
+
+        // Sets the music in the background
+        const gameStartSound = document.getElementById("game-start-sound");
+        const introSong = document.getElementById("intro-song"); // repeated const. Maybe import?
+
+        introSong.pause();
+        gameStartSound.play();
+        
+        setTimeout(() => {
+            this.playGameSong.play();
+            this.playGameSong.volume = 0.3;
+        }, 300);
+
 
         // Start the game loop (updates run 60 times per second)
         this.gameIntervalId = setInterval(() => {
@@ -53,12 +72,14 @@ class Game {
     // gameLoop(): Called repeatedly; updates game state and checks for game over conditions
     gameLoop(){
         this.update();
+        
 
         // If the game is over, clear both intervals (game loop and obstacle spawning)
         if(this.gameIsOver) {
             clearInterval(this.gameIntervalId);
             clearInterval(this.obstacleSpawnInterval);
         }
+
         console.log("Game Looped");
     }
 
@@ -102,8 +123,7 @@ class Game {
 
     }
 
-
-    // catSelect(selection): Initializes the cat based on player's selection ("dia" or "nit")
+    // catSelect(selection): Initializes the cat based on player's selection ("dia" or "nit")    
     catSelect(selection){
         if(selection === "dia"){
             this.cat = new Cat(this.gameScreen, "dia")
@@ -147,32 +167,57 @@ class Game {
         console.log("Obstacles Spawned");
     }
 
-    // displayPoints(): (Placeholder) Updates the score display on the screen
+    // Method to display points and update hearts
     displayPoints() {
         // Select all heart images inside the hearts container
         const hearts = document.querySelectorAll("#hearts-score img");
         // Calculate how many hearts should be filled: one filled heart per 5 points
         const filledCount = Math.floor(this.score / 5);
-        
+
+        // Get the sound for the heart filled
+        const heartFilledSound = document.getElementById("heart-filled");
+
         // Loop through each heart image
         hearts.forEach((heart, index) => {
             // If the heart's index is less than filledCount, fill it; otherwise, empty it.
             if (index < filledCount) {
-            heart.src = "img/heart_filled.svg";  // ensure this image exists
+                heart.src = "img/heart_filled.svg";  // Ensure this image exists
             } else {
-            heart.src = "img/heart_empty.svg";   // ensure this image exists
+                heart.src = "img/heart_empty.svg";   // Ensure this image exists
             }
         });
-        console.log("Score:", this.score, "Filled Hearts:", filledCount);
+
+        // Check if a new heart has been filled
+        if (filledCount > this.previousFilledCount) {
+            heartFilledSound.play();
         }
+
+        // Update the previous filled count
+        this.previousFilledCount = filledCount;
+
+        console.log("Score:", this.score, "Filled Hearts:", filledCount);
+    }
 
 
     // gameOver(): Handles game over logic
     gameOver(){
- 
+        
         // Hide the game screen and display the game end screen
         this.gameScreen.style.display = "none";
         this.gameEndScreen.style.display = "block";
+
+        const gameOverSound = document.getElementById("game-over-sound");
+        const purr = document.getElementById("purr");
+
+        // Pause the Game song, play the game over sound and wait for it to finish, then play purr
+        this.playGameSong.pause();
+        gameOverSound.play();
+        gameOverSound.volume = 1;
+        
+        setTimeout(() => {
+            purr.play();
+            purr.volume = 1;
+        }, 300);
 
         console.log("Game Over");
     }
@@ -180,7 +225,7 @@ class Game {
     // gameWon(): Handles game win logic
     gameWon(){
         const winnerCats = document.querySelector(".cats-container img");
-        const headerGameEnd = document.querySelector("header h1");
+        const headerGameEnd = document.querySelector("#game-end h1");
 
         // Hide the game screen and display the game end screen
 
@@ -193,6 +238,36 @@ class Game {
         console.log("Winner!");
     }
 
-    pauseGame(){}
+    pauseGame() {
+        // Toggle the pause state
+        this.isPaused = !this.isPaused;
 
-}
+        if (this.isPaused) {
+            console.log("Game Paused");
+
+            // Stop the game loop and obstacle spawning
+            clearInterval(this.gameIntervalId);
+            clearInterval(this.obstacleSpawnInterval);
+
+            // Pause the background music
+            this.playGameSong.pause();
+        } else {
+            console.log("Game Resumed");
+
+            // Restart the game loop
+            this.gameIntervalId = setInterval(() => {
+                this.gameLoop();
+            }, this.gameLoopFrequency);
+
+            // Restart spawning obstacles
+            this.obstacleSpawnInterval = setInterval(() => {
+                this.spawnObstacle();
+            }, this.spawnRate);
+
+            // Resume the background music
+            this.playGameSong.play();
+        }
+    }
+
+
+    }

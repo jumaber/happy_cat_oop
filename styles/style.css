@@ -146,7 +146,7 @@ header {
     box-shadow: 0px 4px 4px 0px #00000050;
 }
 
-#sound-toggle {
+#sound-toggle-intro, #sound-toggle-end {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -222,11 +222,14 @@ header {
 
 #sound-toggle-play, #restart-game, #pause-game {
     display: flex;
+    font-family: "Pixelify Sans", serif;
     width: 100vw;
     justify-content: center;
     gap: 8px;
     margin-bottom: 20px;
 }
+
+
 
 
 /********* GAME END *********/

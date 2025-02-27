@@ -6,9 +6,22 @@ window.onload = function () {
   const gameScreen = document.getElementById("game-screen");
   const startButton = document.getElementById("play-button");
   const restartButton = document.getElementById("restart-button");
-  const soundToggle = document.querySelectorAll(".sound-toggle")
-  const soundToggleImage = document.querySelectorAll(".sound-toggle img");
-  const soundToggleText = document.querySelectorAll(".sound-toggle h3");
+
+  const nitStroke = document.getElementById("Union_Nit");
+  const diaStroke = document.getElementById("Union_Dia");
+
+  const soundToggleIntro = document.getElementById("sound-toggle-intro");
+  const soundToggleTextIntro = document.querySelector("#sound-toggle-intro h3");
+  const soundToggleImageIntro = document.querySelector("#sound-toggle-intro img");
+
+  const soundTogglePlay = document.getElementById("sound-toggle-play");
+  const soundToggleTextPlay = document.querySelector("#sound-toggle-play h3");
+  const soundToggleImagePlay = document.querySelector("#sound-toggle-play img");
+
+  const soundToggleEnd = document.getElementById("sound-toggle-end");
+  const soundToggleTextEnd = document.querySelector("#sound-toggle-end h3");
+  const soundToggleImageEnd = document.querySelector("#sound-toggle-end img");
+
   
   // **** AUDIO **** //
   const miaow = document.getElementById("miaow");
@@ -23,40 +36,102 @@ window.onload = function () {
 
   // **** MUSIC GAME INTRO SCREEN ****
   document.addEventListener("mouseover", () => {
+    const introSong = document.getElementById("intro-song");
     introSong.play().catch(error => console.log("Autoplay blocked:", error));
-    introSong.volume = 0.5;
-    introSong.loop = true;
-    });
-
-    soundToggle.forEach((toggle, index) => {
-    toggle.addEventListener("click", () => {
-        if (soundToggleText[index].innerText === "Music On") {
-            introSong.pause();
-            clickToggle.play();
-            soundToggleText[index].innerText = "Music Off";
-            soundToggleImage[index].src = "audio/sound_is_off.svg";
-        } else {
-            introSong.play();
-            clickToggle.play();
-            soundToggleText[index].innerText = "Music On";
-            soundToggleImage[index].src = "audio/sound_is_on.svg";
-        }
-    });
-});
+    introSong.volume = 0.1;
+}, { once: true }); // This will play the sound only once
 
 
+    // Toggle for the Game Intro Screen
+  soundToggleIntro.addEventListener("click", () => {
+    if (soundToggleTextIntro.innerText === "Music On") {
+        introSong.pause();  // Change this from playGameSong to introSong
+        clickToggle.play();
+        soundToggleTextIntro.innerText = "Music Off";
+        soundToggleImageIntro.src = "audio/sound_is_off.svg";  // Corrected path
+    } else if (soundToggleTextIntro.innerText === "Music Off") {
+        introSong.play(); // Change this from playGameSong to introSong
+        clickToggle.play();
+        soundToggleTextIntro.innerText = "Music On";
+        soundToggleImageIntro.src = "audio/sound_is_on.svg";  // Corrected path
+    }
+  });
+
+
+
+    // // Toggle for the Game Screen
+    // soundTogglePlay.addEventListener("click", () => {
+    //   if (soundToggleTextPlay.innerText === "Music On") {
+    //       playGameSong.pause();
+    //       clickToggle.play();
+    //       soundToggleTextPlay.innerText = "Music Off";
+    //       soundToggleImagePlay.src = "sounds/sound_is_off.svg";
+    //     } else if (soundToggleTextPlay.innerText === "Music Off") {
+    //         playGameSong.play();
+    //         clickToggle.play();
+    //         soundToggleTextPlay.innerText = "Music On";
+    //         soundToggleImagePlay.src = "sounds/sound_is_on.svg";
+    //     }
+    //   });
+
+
+    // // Toggle for the Game End Screen
+    // soundToggleEnd.addEventListener("click", () => {
+    //   if (soundToggleTextEnd.innerText === "Music On") {
+    //       playGameSong.pause();
+    //       clickToggle.play();
+    //       soundToggleTextEnd.innerText = "Music Off";
+    //       soundToggleImageEnd.src = "sounds/sound_is_off.svg";
+    //     } else if (soundToggleTextEnd.innerText === "Music Off") {
+    //         playGameSong.play();
+    //         clickToggle.play();
+    //         soundToggleTextEnd.innerText = "Music On";
+    //         soundToggleImageEnd.src = "sounds/sound_is_on.svg";
+    //     }
+    //   });
+
+  // **** PAUSE THE GAME **** 
+
+  const pauseGame = document.getElementById("pause-game");
+  const pauseGameImg = document.querySelector("#pause-game img");
+  const pauseGameText = document.querySelector("#pause-game span"); // Target only text
+
+  pauseGame.addEventListener("click", () => {
+      if (pauseGameText.innerText === "Pause Game") {
+          pauseGameText.innerText = "Resume Game";
+          pauseGameImg.src = "img/resume.svg";
+          game.pauseGame();
+      } else {
+          pauseGameText.innerText = "Pause Game";
+          pauseGameImg.src = "img/pause.svg";
+          game.pauseGame();
+      }
+  });
+
+
+     
 
   // **** SELECT THE CAT **** 
 
   // Update the start button text when a cat is clicked
   nitCat.addEventListener("click", () => {
-    startButton.innerText = "Play with Nit";
     miaow.play();
+    startButton.innerText = "Play with Nit";
+    diaStroke.style.stroke = "none";
+    diaStroke.style["stroke-width"] = "0px";
+    nitStroke.style.stroke = "#FED23E";
+    nitStroke.style["stroke-width"] = "3px";
+   
   });
 
   diaCat.addEventListener("click", () => {
-    startButton.innerText = "Play with Dia";
     miaow.play();
+    startButton.innerText = "Play with Dia";
+    nitStroke.style.stroke = "none";
+    nitStroke.style["stroke-width"] = "0px";
+    diaStroke.style.stroke = "#FED23E";
+    diaStroke.style["stroke-width"] = "3px";
+    
   });
 
   startButton.addEventListener("click", () =>{
@@ -83,6 +158,8 @@ window.onload = function () {
       game.start();
     }
   });
+
+
   // Restart the game
   restartButton.addEventListener("click", () => {
     clickSound.play();

@@ -58,6 +58,8 @@ class Obstacles {
     const catRect = cat.element.getBoundingClientRect();
     const obsRect = this.element.getBoundingClientRect();
 
+
+
     // Basic AABB collision detection
     if (
         catRect.left < obsRect.right &&
@@ -67,6 +69,9 @@ class Obstacles {
     ) {
         // Collision detected: remove this obstacle from the DOM
         this.element.remove();
+
+        const clickSound = document.getElementById("click-sound");
+        clickSound.play();
         console.log("Collision detected: obstacle removed");
         return true;
     }

@@ -9,6 +9,7 @@
         <title>Happy Cat</title>
         
         <link rel="stylesheet" href="./styles/style.css">
+        <link rel="icon" type="image/png" href="./img/favicon-96x96.png" sizes="96x96" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -95,7 +96,7 @@
                 <div class="button-container">
                   <button class="button" id="play-button">Play</button>
                 </div>
-                <div id="sound-toggle" class="sound-toggle">
+                <div id="sound-toggle-intro" class="sound-toggle">
                     <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
                     <h3>Music On</h3>
                 </div>
@@ -118,15 +119,16 @@
             <div class="toggle-container">
                 <div class="toggle-wrapper">
                     <div id="restart-game">
-                            <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
+                            <img src="img/restart.svg" alt="Click to turn off sound">
                             <h3>Restart</h3>
                         </div>
                     <div id="pause-game">
-                            <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
-                            <h3>Pause</h3>
-                        </div>
+                        <img src="img/pause.svg">
+                        <span>Pause Game</span>
+                    </div>
+
                     <div id= "sound-toggle-play" class="sound-toggle">
-                        <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
+                        <img src="img/sound_is_on.svg" alt="Click to restart the game">
                         <h3>Music On</h3>
                     </div>
                 </div>
@@ -167,6 +169,7 @@
     <audio id="game-start-sound" src="audio/game-start.mp3"></audio>
     <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
     <audio id="game-over-sound" src="audio/lose_1.mp3"></audio>
+    <audio id="heart-filled" src="audio/heart_filled.mp3"></audio>
 
 <!-- GAME END AUDIO FILES -->
     <audio id="purr" src="audio/rico-purr.mp3"></audio>
