@@ -7,6 +7,10 @@ class Game {
 
         // Audio elements used in multiple methods
         this.playGameSong = document.getElementById("play-game-song");
+        this.purr = document.getElementById("purr");
+        this.winnerSound = document.getElementById("winner");
+
+
 
         // Game state variables
         this.cat = null;
@@ -20,7 +24,7 @@ class Game {
         this.gameIntervalId = null; // Will store the game loop interval
         this.obstacleSpawnInterval = null; // Will store obstacle spawning interval
         this.gameLoopFrequency = 1000 / 60; // ~60 frames per second (16.67ms per frame)
-        this.spawnRate = 1500; // Spawn an obstacle every 1.5 seconds
+        this.spawnRate = this.spawnRate; 
 
         // Get score display element
         this.scoreHTML = document.getElementById("hearts-score");
@@ -49,9 +53,11 @@ class Game {
             this.playGameSong.volume = 0.3;
         }, 300);
 
-        // Start game loop and obstacle spawning
+        // Set your initial level or at least set this.speed, spawnRate, etc.
+        this.updateLevel();
         this.gameIntervalId = setInterval(() => this.gameLoop(), this.gameLoopFrequency);
         this.obstacleSpawnInterval = setInterval(() => this.spawnObstacle(), this.spawnRate);
+
 
         console.log("Game Started");
     }
@@ -78,7 +84,7 @@ class Game {
             if (this.cat && obstacle.collide(this.cat)) {
                 if (obstacle.type === "fish") {
                     this.score++;
-                    this.displayPoints();
+                    // this.displayPoints();
                     this.updateLevel() // Check if we need to update the cat speed
                 } else if (obstacle.type === "bomb") {
                     this.gameOver();
@@ -108,33 +114,16 @@ class Game {
     }
 
     // 🐟 Spawn a new obstacle (fish or bomb)
-    spawnObstacle() {
-        const randomType = Math.random() < 0.2 ? "bomb" : "fish"; // 20% chance for bomb, 80% for fish
-        const speed = Math.random() * 3 + 1; // Speed between 1 and 4 px per frame
-        const obstacle = new Obstacles(this.gameScreen, randomType, speed);
+        spawnObstacle() {
+    const randomType = Math.random() < this.bombChance ? "bomb" : "fish";
+    const speed = this.speed;
+    const obstacle = new Obstacles(this.gameScreen, randomType, speed);
+    obstacle.spawn();
+    this.obstacles.push(obstacle);
+    console.log("spawnObstacle called - randomType:", randomType, "speed:", speed);
+}
 
-        obstacle.spawn();
-        this.obstacles.push(obstacle);
-    }
 
-    // ❤️ Update the hearts display based on score
-    displayPoints() {
-        const hearts = document.querySelectorAll("#hearts-score img");
-        const filledCount = Math.floor(this.score / 5);
-        const heartFilledSound = document.getElementById("heart-filled");
-
-        // Update hearts UI
-        hearts.forEach((heart, index) => {
-            heart.src = index < filledCount ? "img/heart_filled.svg" : "img/heart_empty.svg";
-        });
-
-        // Play sound if a new heart is filled
-        if (filledCount > this.previousFilledCount) {
-            heartFilledSound.play();
-        }
-
-        this.previousFilledCount = filledCount;
-    }
 
     // ☠️ Handle game over state
     gameOver() {
@@ -143,13 +132,12 @@ class Game {
 
         // Play game over sound
         const gameOverSound = document.getElementById("game-over-sound");
-        const purr = document.getElementById("purr");
 
         this.playGameSong.pause();
         gameOverSound.play();
 
         setTimeout(() => {
-            purr.play();
+            this.purr.play();
         }, 300);
 
         console.log("Game Over");
@@ -167,10 +155,9 @@ class Game {
         winnerCats.src = "img/winner.svg";
 
         this.playGameSong.pause();
-        gameOverSound.play();
 
         setTimeout(() => {
-            purr.play();
+            this.purr.play();
         }, 300);
 
 
@@ -235,7 +222,6 @@ class Game {
         // Define the audio elements
         const introSong = document.getElementById("intro-song");
         const playGameSong = document.getElementById("play-game-song");
-        const purr = document.getElementById("purr");
 
         // Select the correct toggle button and text based on the screen
         let soundToggle, soundToggleText, soundToggleImage;
@@ -254,7 +240,7 @@ class Game {
         }
 
         // Determine which song is currently playing
-        const activeSong = [introSong, playGameSong, purr].find(song => !song.paused);
+        const activeSong = [introSong, playGameSong, this.purr].find(song => !song.paused);
 
         // Toggle music on/off
         if (activeSong) {
@@ -271,7 +257,7 @@ class Game {
             } else if (screen === "play") {
                 playGameSong.play();
             } else if (screen === "end") {
-                purr.play();
+                this.purr.play();
             }
             soundToggleText.innerText = "Music On";
                 if (screen === "end"){
@@ -281,24 +267,65 @@ class Game {
         }
     }
 
+    // ❤️ Handles 
      updateLevel(){
-         if(this.score <= 5){
-            this.cat.steps = 2; 
-            console.log("Current steps:" + this.cat.steps + "%")
+
+        const heartFilledSound = document.getElementById("heart-filled");
+        const level1Heart = document.getElementById("heart1");
+        const level2Heart = document.getElementById("heart2");
+        const level3Heart = document.getElementById("heart3");
+        const level4Heart = document.getElementById("heart4");
+        const level5Heart = document.getElementById("heart5");
+        
+
+        if (this.score >= 0 && this.score < 5){ // Level 0
+            this.cat.steps = 1; 
+            this.bombChance = 0.20;
+            this.speed = Math.random() * 1 + 1;  // e.g., a speed between 1 and 2 px per frame
+            this.spawnRate = 1500;
+            console.log("Steps: 1%, Level: 1")
+
+        }
+            else if(this.score >= 5 && this.score < 10){ // Level 1
+                this.cat.steps = 1.5; 
+                this.speed = Math.random() * 1 + 2;
+                this.bombChance = 0.30;
+                this.spawnRate = 1000;
+                level1Heart.src = "img/heart_filled.svg";
+                heartFilledSound.play();
+                console.log("Steps:" + this.cat.steps + "%, Level:2")
             }
-            else if(this.score <= 10){
-                this.cat.steps = 3;
-                console.log("Current steps:" + this.cat.steps + "%")
+            else if(this.score >= 10 && this.score < 15){ // Level 2
+                this.cat.steps = 2.5;
+                this.speed = Math.random() * 1 + 3;
+                this.bombChance = 0.40;
+                this.spawnRate = 500;
+                level2Heart.src = "img/heart_filled.svg";
+                heartFilledSound.play();
+                console.log("Steps:" + this.cat.steps + "%, Level:3")
 
             }
-            else if(this.score <= 15){
-                this.cat.steps = 4;
-                console.log("Current steps:" + this.cat.steps + "%")
-
+            else if(this.score >= 15 && this.score < 20){ // Level 3
+                this.cat.steps = 3.5;
+                this.speed = Math.random() * 1 + 4;
+                this.bombChance = 0.5;
+                this.spawnRate = 200;
+                level3Heart.src = "img/heart_filled.svg";
+                heartFilledSound.play();
+                console.log("Steps:" + this.cat.steps + "%, Level: 4")
             }
-            else {
+            else if(this.score >= 20 && this.score < 24){ // Level 4
                 this.cat.steps = 5;
-                console.log("Current steps:" + this.cat.steps + "%")
+                this.speed = Math.random() * 1 + 4;
+                this.bombChance = 0.6;
+                this.spawnRate = 50;
+                level4Heart.src = "img/heart_filled.svg";
+                heartFilledSound.play();
+                console.log("Steps:" + this.cat.steps + "%, Level: 4")
+            }
+            else if(this.score === 25){ // Level 5 = Won!
+                level5Heart.src = "img/heart_filled.svg";
+                heartFilledSound.play();
             }
         }
-}
+    }
