@@ -60,7 +60,9 @@ document.getElementById("sound-toggle-end").addEventListener("click", () => {
       }
   });
 
-// **** RESTART THE GAME **** 
+
+  
+  // **** RESTART THE GAME FROM THE PLAY SCREEN **** 
 const restart = document.getElementById("restart-game");
 
 restart.addEventListener("click", () => {
@@ -97,7 +99,6 @@ restart.addEventListener("click", () => {
   startButton.addEventListener("click", () =>{
     clickSound.play();
   });
-  
 
 
   // When the start button is clicked, create the selected cat and start the game
@@ -120,7 +121,7 @@ restart.addEventListener("click", () => {
   });
 
 
-  // Restart the game
+  // **** RESTART THE GAME FROM THE GAME-END SCREEN **** 
   restartButton.addEventListener("click", () => {
     clickSound.play();
 
@@ -129,36 +130,17 @@ restart.addEventListener("click", () => {
     }, 200);
   });
 
+  
+  // **** MOVE THE CAT **** 
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
-  document.addEventListener("keydown", (event) => {
-    if (!game.cat) return; // ensure a cat has been selected
-    if (event.key === "ArrowLeft") {
-      game.cat.move(-20);
-      moveCatSound.play();
-      // Optionally, update the image or play sound inside move() or here
-    } else if (event.key === "ArrowRight") {
-      game.cat.move(20);
-      // Optionally, update the image or play sound inside move() or here
-    }
-  });
+ document.addEventListener("keydown", (event) => {
+  if (!game.cat) return;
+  game.cat.handleKeyDown(event.key);
+});
 
-  document.addEventListener("keyup", (event) => {
-    if (!game.cat) return;
-    if (event.key === "ArrowLeft") {
-      if(game.cat.type === "dia"){
-      game.cat.element.src = "img/dia_default_left.svg"
-      }
-      if(game.cat.type === "nit"){
-      game.cat.element.src = "img/nit_default_left.svg"
-      }
+document.addEventListener("keyup", (event) => {
+  if (!game.cat) return;
+  game.cat.handleKeyUp(event.key);
+});
 
-    } else if (event.key === "ArrowRight") {
- if(game.cat.type === "dia"){
-      game.cat.element.src = "img/dia_default_right.svg"
-      }
-      if(game.cat.type === "nit"){
-      game.cat.element.src = "img/nit_default_right.svg"
-      }
-    }
-  });
 };

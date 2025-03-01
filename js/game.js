@@ -79,6 +79,7 @@ class Game {
                 if (obstacle.type === "fish") {
                     this.score++;
                     this.displayPoints();
+                    this.updateLevel() // Check if we need to update the cat speed
                 } else if (obstacle.type === "bomb") {
                     this.gameOver();
                 }
@@ -93,6 +94,8 @@ class Game {
         if (this.score >= 25) {
             this.gameWon();
         }
+        
+        
     }
 
     // 🐱 Select a cat ("dia" or "nit")
@@ -162,6 +165,14 @@ class Game {
 
         headerGameEnd.innerText = "YOU WON!";
         winnerCats.src = "img/winner.svg";
+
+        this.playGameSong.pause();
+        gameOverSound.play();
+
+        setTimeout(() => {
+            purr.play();
+        }, 300);
+
 
         console.log("Winner!");
     }
@@ -270,5 +281,24 @@ class Game {
         }
     }
 
+     updateLevel(){
+         if(this.score <= 5){
+            this.cat.steps = 2; 
+            console.log("Current steps:" + this.cat.steps + "%")
+            }
+            else if(this.score <= 10){
+                this.cat.steps = 3;
+                console.log("Current steps:" + this.cat.steps + "%")
 
+            }
+            else if(this.score <= 15){
+                this.cat.steps = 4;
+                console.log("Current steps:" + this.cat.steps + "%")
+
+            }
+            else {
+                this.cat.steps = 5;
+                console.log("Current steps:" + this.cat.steps + "%")
+            }
+        }
 }

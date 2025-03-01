@@ -1,83 +1,114 @@
 class Cat {
-    constructor(gameScreen, type, left = 650, width = 160, height = 160, top = 400) {
-        // Store a reference to the game screen container
-        this.gameScreen = gameScreen;
-        // The type of cat selected ("dia" or "nit"), which may affect appearance and properties
-        this.type = type;
-        // Initial horizontal position (left side) of the cat
-        this.positionX = left;
-        // Dimensions for the cat's image; these may be controlled by CSS later, but here they're set in JS
-        this.width = width;
-        this.height = height;
-        // The vertical position (top) where the cat should appear on the screen
-        this.top = top;
-        // A property to track horizontal movement velocity (not used for discrete key presses but useful for smooth movement)
-        this.directionX = 0;
+  constructor(gameScreen, type) {
+    // Keep references to the game screen and cat type
+    this.gameScreen = gameScreen;
+    this.type = type;
 
-        // Create an image element to visually represent the cat
-        this.element = document.createElement("img");
-        // Use absolute positioning so we can set exact coordinates on the game screen
-        this.element.style.position = "absolute";
-        // Set the initial horizontal position using the positionX value
-        this.element.style.left = this.positionX + "px";
-        // Set the dimensions of the cat image
-        this.element.style.width = this.width + "px";
-        this.element.style.height = this.height + "px";
-        // Set the vertical position using the top value
-        this.element.style.top = this.top + "px";
-    }
-  
-    // move(pixels): Moves the cat horizontally by the given pixel amount
-    move(pixels) {
-        // Update the cat's position by adding the movement amount
-        this.positionX += pixels;
+    this.widthPercent = 10; // The cat will be 10% of the game screen width
+    // (Optionally define a heightPercent the same way, or use auto height.)
 
-        // Define the maximum allowed horizontal position so the cat doesn't go off-screen.
-        // This is the game screen's width minus the cat's width.
-        const maxPosition = this.gameScreen.offsetWidth - this.width;
-        // If the new position is less than 0, clamp it to 0 (left boundary)
-        if (this.positionX < 0) {
-            this.positionX = 0;
-        }
-        // If the new position exceeds the right boundary, clamp it to maxPosition
-        else if (this.positionX > maxPosition) {
-            this.positionX = maxPosition;
-        }
+    // Horizontal position as a percentage. 50% = center
+    this.positionXPercent = 45;
 
-        // Update the cat's image based on the direction of movement.
-        // If moving left (pixels is negative), set the left-moving image.
-        // Otherwise, set the default image for moving right.
-        if (pixels < 0) {
-            this.element.src = this.type === "dia" ? "img/dia_move_left.svg" : "img/nit_move_left.svg";
-        } else {
-            this.element.src = this.type === "dia" ? "img/dia_move_right.svg" : "img/nit_move_right.svg";
-        }
+    // Property controling the steps (speed) of the cat
+    this.steps = 1;
 
-        // Call renderCat() to update the DOM element's position based on the new state
-        this.renderCat();
-    }
-       
+    // Create the cat’s <img> element
+    this.element = document.createElement("img");
+    this.element.style.position = "absolute";
 
-    // renderCat(): Updates the visual position of the cat element on the screen.
-    renderCat() {
-        // Set the left style property to reflect the updated horizontal position
-        this.element.style.left = this.positionX + "px";
-        console.log("Cat Rendered");
+    // Start with a default cat image
+    if (this.type === "dia") {
+      this.element.src = "img/dia_default_left.svg";
+    } else {
+      this.element.src = "img/nit_default_left.svg";
     }
 
-    // collect(): Placeholder for logic when the cat collects an item (like fish)
-    collect() {
-        console.log("Collected Points");
+    // Position of the cat vertically
+    this.element.style.top = "50%";
+
+    // Set the cat’s initial left and width (in percentages)
+    this.updateCatStyles();
+
+    // get reference to your move-cat-sound:
+    this.moveSound = document.getElementById("move-cat-sound");
+  }
+
+  // Apply the current this.positionXPercent and this.widthPercent
+  updateCatStyles() {
+    // Cap the cat's X% between 0% and (100% - widthPercent)
+    // so it never goes off the right edge.
+    if (this.positionXPercent < 0) {
+      this.positionXPercent = 0;
+    }
+    const maxX = 100 - this.widthPercent;
+    if (this.positionXPercent > maxX) {
+      this.positionXPercent = maxX;
     }
 
-    // reset(): Placeholder for logic to reset the cat's state between game sessions
-    reset() {
-        console.log("Cat Reseted");
-    }
+    // Convert the percentages to strings for CSS
+    this.element.style.left = this.positionXPercent + "%";
+    this.element.style.width = this.widthPercent + "%";
+    // If you want the cat’s height to scale automatically:
+    this.element.style.height = "auto";
+  }
 
-    // updateCat(): Placeholder for updating the cat's state on each game loop iteration.
-    // You might include boundary checking or other dynamic updates here.
+  // Move left in percentage terms
+  moveLeft() {
+    // For example, move left by 5% each time
+    this.positionXPercent -= this.steps;
+    if (this.moveSound) {
+      this.moveSound.play();
+    }
+    // Update the cat sprite
+    this.element.src =
+      this.type === "dia" ? "img/dia_move_left.svg" : "img/nit_move_left.svg";
+
+    // Re-apply styles with the new position
+    this.updateCatStyles();
+  }
+
+  // Move right in percentage terms
+  moveRight() {
+    // Move right by 5%
+    this.positionXPercent += this.steps;
+    if (this.moveSound) {
+      this.moveSound.play();
+    }
+    // Update the cat sprite
+    this.element.src =
+      this.type === "dia" ? "img/dia_move_right.svg" : "img/nit_move_right.svg";
+
+    // Re-apply styles with the new position
+    this.updateCatStyles();
+  }
+
+  // Handle KEY DOWN
+  handleKeyDown(key) {
+    if (key === "ArrowLeft") {
+      this.moveLeft();
+    } else if (key === "ArrowRight") {
+      this.moveRight();
+    }
+  }
+
+  // Handle KEY UP
+  handleKeyUp(key) {
+    // Revert to the default cat image
+    if (key === "ArrowLeft") {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_left.svg"
+          : "img/nit_default_left.svg";
+    } else if (key === "ArrowRight") {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_right.svg"
+          : "img/nit_default_right.svg";
+    }
+  }
+
     updateCat() {
-        console.log("Cat's boundaries and dynamic properties have been updated");
+    // Called every frame
     }
 }
