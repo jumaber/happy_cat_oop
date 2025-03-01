@@ -44,7 +44,6 @@ document.getElementById("sound-toggle-end").addEventListener("click", () => {
    
 
   // **** PAUSE THE GAME **** 
-
   const pauseGame = document.getElementById("pause-game");
   const pauseGameImg = document.querySelector("#pause-game img");
   const pauseGameText = document.querySelector("#pause-game span"); // Target only text
@@ -62,7 +61,6 @@ document.getElementById("sound-toggle-end").addEventListener("click", () => {
   });
 
 // **** RESTART THE GAME **** 
-
 const restart = document.getElementById("restart-game");
 
 restart.addEventListener("click", () => {

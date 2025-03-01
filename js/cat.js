@@ -44,9 +44,9 @@ class Cat {
             this.positionX = maxPosition;
         }
 
-        // Optional: Update the cat's image based on the direction of movement.
+        // Update the cat's image based on the direction of movement.
         // If moving left (pixels is negative), set the left-moving image.
-        // Otherwise, set the default (or "happy") image for moving right.
+        // Otherwise, set the default image for moving right.
         if (pixels < 0) {
             this.element.src = this.type === "dia" ? "img/dia_move_left.svg" : "img/nit_move_left.svg";
         } else {
@@ -57,6 +57,7 @@ class Cat {
         this.renderCat();
     }
        
+
     // renderCat(): Updates the visual position of the cat element on the screen.
     renderCat() {
         // Set the left style property to reflect the updated horizontal position
