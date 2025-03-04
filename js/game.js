@@ -268,6 +268,7 @@ class Game {
     // ❤️ Handles the speed
     updateLevel() {
         const heartFilledSound = document.getElementById("heart-filled");
+        const level = document.querySelector(".level");
         const levelHearts = [
             document.getElementById("heart1"),
             document.getElementById("heart2"),
@@ -277,6 +278,7 @@ class Game {
         ];
 
         const filledCount = Math.floor(this.score / 10);
+        
 
         if (filledCount > this.previousFilledCount) {
             heartFilledSound.play(); // Play sound ONLY when a new heart gets filled
@@ -298,26 +300,35 @@ class Game {
             this.cat.steps = 1; 
             this.bombChance = 0.2;
             this.speed = Math.random() * 1 + 1;
+            level.innerText = "Level 0"
 
         } else if (this.score < 20) {
             this.cat.steps = 1.5;
             this.speed = Math.random() * 1 + 2;
             this.bombChance = 0.3;
+            level.innerText = "Level 1"
+
 
         } else if (this.score < 30) {
             this.cat.steps = 2.5;
             this.speed = Math.random() * 1 + 3;
             this.bombChance = 0.4;
+            level.innerText = "Level 2"
+
 
         } else if (this.score < 40) {
             this.cat.steps = 3.5;
             this.speed = Math.random() * 1 + 4;
             this.bombChance = 0.5;
+            level.innerText = "Level 3"
+
 
         } else if (this.score < 50) {
             this.cat.steps = 5;
             this.speed = Math.random() * 1 + 5;
             this.bombChance = 0.6;
+            level.innerText = "Level 4"
+
         }
     }
 
