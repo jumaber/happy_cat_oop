@@ -10,8 +10,6 @@ class Game {
         this.purr = document.getElementById("purr");
         this.winnerSound = document.getElementById("winner");
 
-
-
         // Game state variables
         this.cat = null;
         this.obstacles = [];
@@ -24,7 +22,7 @@ class Game {
         this.gameIntervalId = null; // Will store the game loop interval
         this.obstacleSpawnInterval = null; // Will store obstacle spawning interval
         this.gameLoopFrequency = 1000 / 60; // ~60 frames per second (16.67ms per frame)
-        this.spawnRate = this.spawnRate; 
+        this.spawnRate = 1000; 
 
         // Get score display element
         this.scoreHTML = document.getElementById("hearts-score");
@@ -97,7 +95,7 @@ class Game {
         console.log("Update Running, score:", this.score);
 
         // Check for win condition
-        if (this.score >= 25) {
+        if (this.score >= 50) {
             this.gameWon();
         }
         
@@ -267,65 +265,60 @@ class Game {
         }
     }
 
-    // ❤️ Handles 
-     updateLevel(){
-
+    // ❤️ Handles the speed
+    updateLevel() {
         const heartFilledSound = document.getElementById("heart-filled");
-        const level1Heart = document.getElementById("heart1");
-        const level2Heart = document.getElementById("heart2");
-        const level3Heart = document.getElementById("heart3");
-        const level4Heart = document.getElementById("heart4");
-        const level5Heart = document.getElementById("heart5");
-        
+        const levelHearts = [
+            document.getElementById("heart1"),
+            document.getElementById("heart2"),
+            document.getElementById("heart3"),
+            document.getElementById("heart4"),
+            document.getElementById("heart5"),
+        ];
 
-        if (this.score >= 0 && this.score < 5){ // Level 0
+        const filledCount = Math.floor(this.score / 10);
+
+        if (filledCount > this.previousFilledCount) {
+            heartFilledSound.play(); // Play sound ONLY when a new heart gets filled
+            this.previousFilledCount = filledCount; // Update the previous count
+        }
+
+        // Update heart images based on the filledCount
+        levelHearts.forEach((heart, index) => {
+            if(index < filledCount) {
+                heart.src = "img/heart_filled.svg";
+            } else {
+                heart.src = "img/heart_empty.svg";
+            }
+        });
+
+
+        // Adjust game settings based on level
+        if (this.score < 10) {
             this.cat.steps = 1; 
-            this.bombChance = 0.20;
-            this.speed = Math.random() * 1 + 1;  // e.g., a speed between 1 and 2 px per frame
-            this.spawnRate = 1500;
-            console.log("Steps: 1%, Level: 1")
+            this.bombChance = 0.2;
+            this.speed = Math.random() * 1 + 1;
 
-        }
-            else if(this.score >= 5 && this.score < 10){ // Level 1
-                this.cat.steps = 1.5; 
-                this.speed = Math.random() * 1 + 2;
-                this.bombChance = 0.30;
-                this.spawnRate = 1000;
-                level1Heart.src = "img/heart_filled.svg";
-                heartFilledSound.play();
-                console.log("Steps:" + this.cat.steps + "%, Level:2")
-            }
-            else if(this.score >= 10 && this.score < 15){ // Level 2
-                this.cat.steps = 2.5;
-                this.speed = Math.random() * 1 + 3;
-                this.bombChance = 0.40;
-                this.spawnRate = 500;
-                level2Heart.src = "img/heart_filled.svg";
-                heartFilledSound.play();
-                console.log("Steps:" + this.cat.steps + "%, Level:3")
+        } else if (this.score < 20) {
+            this.cat.steps = 1.5;
+            this.speed = Math.random() * 1 + 2;
+            this.bombChance = 0.3;
 
-            }
-            else if(this.score >= 15 && this.score < 20){ // Level 3
-                this.cat.steps = 3.5;
-                this.speed = Math.random() * 1 + 4;
-                this.bombChance = 0.5;
-                this.spawnRate = 200;
-                level3Heart.src = "img/heart_filled.svg";
-                heartFilledSound.play();
-                console.log("Steps:" + this.cat.steps + "%, Level: 4")
-            }
-            else if(this.score >= 20 && this.score < 24){ // Level 4
-                this.cat.steps = 5;
-                this.speed = Math.random() * 1 + 4;
-                this.bombChance = 0.6;
-                this.spawnRate = 50;
-                level4Heart.src = "img/heart_filled.svg";
-                heartFilledSound.play();
-                console.log("Steps:" + this.cat.steps + "%, Level: 4")
-            }
-            else if(this.score === 25){ // Level 5 = Won!
-                level5Heart.src = "img/heart_filled.svg";
-                heartFilledSound.play();
-            }
+        } else if (this.score < 30) {
+            this.cat.steps = 2.5;
+            this.speed = Math.random() * 1 + 3;
+            this.bombChance = 0.4;
+
+        } else if (this.score < 40) {
+            this.cat.steps = 3.5;
+            this.speed = Math.random() * 1 + 4;
+            this.bombChance = 0.5;
+
+        } else if (this.score < 50) {
+            this.cat.steps = 5;
+            this.speed = Math.random() * 1 + 5;
+            this.bombChance = 0.6;
         }
+    }
+
     }

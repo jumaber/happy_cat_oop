@@ -9,6 +9,8 @@ class Cat {
 
     // Horizontal position as a percentage. 50% = center
     this.positionXPercent = 45;
+    this.positionYPercent = 50;
+
 
     // Property controling the steps (speed) of the cat
     this.steps = 1;
@@ -109,6 +111,7 @@ class Cat {
   }
 
     updateCat() {
-    // Called every frame
+    // Called every frame // DO NOT REMOVE!!
+        console.log("Cat is updating...");
     }
 }
