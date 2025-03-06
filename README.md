@@ -1,118 +1,106 @@
-# NIFFLER'S LOOT
+# HAPPY CAT
 
-
-![Game logo](/Images2/Niffler_readme.gif)
+![Game logo](./img/heart_filled.svg)
 
 ## Introduction
-You've got a Niffler - a furry little loot goblin with a nose for treasure and zero self-control. But in a world of gold and glitter, not everything is worth grabbing. Do you know how to loot wisely? Try out this game to see if you can hoard as much money within a certain time limit.
+Welcome to **Happy Cat**, a fun-filled, feline adventure! Choose your favorite cat—Dia or Nit—and embark on a delightful quest to catch as many fish as possible while carefully dodging bombs. Can your cat become the happiest cat by filling all 5 hearts?
 
 ## MVP
 ### Themes
-- **Character**: Niffler, inspired by the movie **Fantastic beasts and where to find them**
-- **UI**: dreamy and minimalistic, inspired by **Monument Valley**
-### Win lose logic
-- **Goal**: Loot enough money within a certain time limit 
-- **Win**: Your Niffler can go to the next round
-- **Lose**: You can play again
-### Basic functionalities
-- **Niffler's moves**: The player uses arrows to move their Niffler
-- **Game objects**: coins, stones, red pockets and cursed coins are generated at random
-    - The generated game objects must not overlap with the current position of the Niffler
-    - The game objects and the Niffler's location are strictly positioned within a grid cell
-    - The game object disappear shortly after the Niffler moves into the object's position
-- **Loot balance**: The loot balance gets updated after each collision, and is restarted before each round begins
-- **Time**: The game is over after the time runs out; the game is won as soon as the target is met
-- **Screen size**: The game is not suitable for small touch screens (ipad, mobile)
+- **Character**: Choose your cat—adorable **Dia** or playful **Nit**
+- **UI**: Playful, colorful pixel-art inspired design, cozy and minimalistic
+
+### Win/Lose Logic
+- **Goal**: Catch **50 fish** to fill all **5 hearts**
+- **Win**: Successfully collect **50 fish** without hitting bombs
+- **Lose**: Hit a bomb, and it's game over!
+
+### Basic Functionalities
+- **Cat moves**: Move left and right using arrow keys, jump with the up arrow.
+- **Game Objects**: Fish and bombs fall randomly
+  - Objects do not overlap with the cat's starting position
+  - Items fall vertically and increase speed as you progress through levels
+  - Objects disappear upon collision with the cat
+- **Hearts and Score**: Each heart is filled by catching 5 fish (10 fish = 1 heart filled)
+- **Game End**: Instantly ends if a bomb is caught
+- **Screen size**: Designed for desktop, not suitable for mobile devices
 
 ## Iterations
-### Second iteration
-- [x] Add 2 more levels with different settings
-- [x] Upgrade the cursed coin function for the next level
-- [x] Refactor code to make it easier to add levels
+### Second Iteration
+- [ ] Add background music and engaging sound effects
+- [ ] Add Music Pause, Game Pause and Restart function
+- [ ] Enhance bomb behavior for added challenge
 
 ### Third iteration
-- [x] Add music
-- [x] Fix screen size to avoid scrolling & make sure components don't overflow
-- [x] Generate different random ending messages for both levels
+- [ ] Add jump function to catch fish faster
+- [ ] Add 4 more levels with increasing cat speed, falling items and higher percentage of falling bombs
+- [ ] Improve responsive design to avoid screen overflow issues
+
 
 ## Backlog
-- [ ] Next level: A new game object - banana, which will make your Niffler slide *#designheavy*
-- [ ] Next level: If the Niffler gets stuck in any cursed coin 5 times, the game is over
-- [ ] Next level: Cursed coin means random telepot 
-- [ ] Betting function for points multiplier *#designheavy*
-- [ ] Saving the fastest loot during each round *#designheavy*
-- [ ] Modify the Challenge screen so you can click on a map to go back a level *#designheavy*
-- [ ] Fix bugs: Sometimes points don't add because the Niffler moves at the same time as the object being generated
-- [ ] Add shortcuts to stop the music + instruction when hovering your mouse on the music icon
+- [ ] Add new obstacles or bonuses with unique interactions *#designheavy*
+- [ ] Add qualities for each cat
+- [ ] Improve Pause function
 
-## Useful functions
+## Useful Functions
 <details>
-    <summary>Create a change screen function </summary>
-```javascript 
+<summary>Create a function to switch between screens</summary>
+
+```javascript
 function switchScreen(fromScreen, toScreen, displayType){
     fromScreen.style.display = "none";
     toScreen.style.display = displayType; 
 }
-</details>```
 
-###Create an event listener to switch screen
-```javascript
-buttons.nextLevel.addEventListener("click", () =>{
-    // console.log("next level button clicked");
-    switchScreen(screens.gameEnd, screens.gameChallenge, "flex");
-    currentLevel++;
-    loadLevel(currentLevel);
-})
+</details> 
+<details> 
+<summary>Event listener to switch screen on button click</summary>
 
+document.getElementById("play-button").addEventListener("click", () => {
+    switchScreen(gameIntroScreen, gameScreen, "block");
+});
+</details> 
 
-<details>
-    <summary> Positioning the Niffler</summary>
+<details> 
+<summary>Positioning your Cat dynamically</summary>
 
-**Objective 1:**
-``` Test code ```
-**Objective 2:**
-``` Test code ```
+// Dynamically positions the cat based on screen width percentage
+cat.element.style.left = cat.positionXPercent + "%";
+</details> 
 
-</details>
-<details>
-    <summary> Generating game objects</summary>
+<details> 
+<summary>Creating and spawning obstacles (fish and bombs)</summary>
+const obstacle = new Obstacles(gameScreen, "fish", obstacleSpeed);
+obstacle.spawn();
+</details> 
 
-**Objective 1:**
-``` Test code ```
-**Objective 2:**
-``` Test code ```
+<details> 
+<summary>Collision detection logic</summary>
+if(obstacle.collide(cat)) {
+    if(obstacle.type === "bomb") {
+        game.gameOver();
+    } else {
+        game.score++;
+    }
+}
+</details> 
 
-</details>
-<details>
-    <summary> Adding different levels</summary>
+## States and Screen Transitions
+- **Start Screen**: Game title, cat selection, and Play button
+- **Instruction Screen**: Explains cat controls (arrow keys for left/right, spacebar for jumping), objectives (catch fish, avoid bombs)
+- **Game Screen**: Main gameplay area with falling items
+- **Game End Screen**: Displays final score and game outcome (win or lose)
 
-**Objective 1:**
-``` Test code ```
-**Objective 2:**
-``` Test code ```
-
-</details>
-
-## States y States Transitions
-- **Start Screen**: contains the game's name, the main logo, and the next button
-- **Instruction Screen**: contains instructions on how to move the Niffler, and what objects to loot and to avoid
-- **Game Screen**: where the games take place
-- **Game End Screen**: contains the final score and the final status (win or lose)
-
-## Task
-- [x] **Step 1**: Game logic; HTML basic structure; CSS basic structure
-- [x] **Step 2**: CSS & HTML iteration for each screen (first 4 screens of Level 1); screen switch functions;
-- [x] **Step 3**: Generate all UI components with ChatGPT, DALL-E and Adobe Express; CSS iteration
-- [x] **Step 4**: Game screen; Player's classes & methods
-- [x] **Step 5**: Game object classes & methods; Collision without points; Countdown functions; Loot balance functions; collision with points
-- [x] **Step 6**: Drafted documentation excluding data structure
-- [x] **Step 7**: Drafted presentation; Game logic, HTML basic structure, CSS basic structure of Level 2
-- [x] **Step 8**: Second iteration of the game screen; Code refactor
-- [x] **Step 9**: Third iteration; add music 
-- [ ] **Step 10**: Data structure documentation; 
-- [ ] **Step 11**: review documentation & create the presentation slide
-
-## Links
-- [Slides Link](https://docs.google.com/presentation/d/1KTISjNAhMh3GGtTzAaSYKxxfw5YfKdt1qn2AL2ZiFlQ/edit?usp=sharing)
-- [Github repository Link](https://github.com/znguye/NifflerLoot)
-- [Deployment Link](znguye.github.io/NifflerLoot/)
+## Tasks
+- [x] **Step 1**: Core game logic; basic HTML & CSS structure
+- [x] **Step 2**: Implement CSS & HTML layouts for screens; enable screen transitions
+- [x] **Step 3**: Generate UI assets and iterate CSS styling
+- [x] **Step 4**: Cat class & movement logic
+- [x] **Step 5**: Cat movement, obstacles creation, and collision detection
+- [x] **Step 5**: Implement scoring logic and game-object interactions
+- [ ] **Step 6**: Initial documentation draft
+- [ ] **Step 7**: Prepare presentation structure and slides
+- [ ] **Step 8**: Refactor codebase for better scalability
+- [ ] **Step 9**: Add background music and sound effects
+- [ ] **Step 10**: Finalize data structure documentation
+- [ ] **Step 11**: Review final documentation and prepare presentation slides
