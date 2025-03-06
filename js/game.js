@@ -73,9 +73,7 @@ class Game {
 
     // 🔄 Update game objects
     update() {
-        if (this.cat) {
-            this.cat.updateCat();
-        }
+        this.cat;
 
         // Update obstacles and check for collisions
         this.obstacles = this.obstacles.filter(obstacle => {

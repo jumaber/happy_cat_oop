@@ -133,14 +133,22 @@ restart.addEventListener("click", () => {
   
   // **** MOVE THE CAT **** 
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
- document.addEventListener("keydown", (event) => {
-  if (!game.cat) return;
-  game.cat.handleKeyDown(event.key);
-});
+  document.addEventListener("keydown", (event) => {
+    if (!game.cat) return;
+    game.cat.handleKeyDown(event.key);
+
+    if (event.key === "ArrowUp") {
+      game.cat.jump();
+    }
+  });
+
+
+
 
 document.addEventListener("keyup", (event) => {
   if (!game.cat) return;
   game.cat.handleKeyUp(event.key);
 });
+
 
 };

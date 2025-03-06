@@ -250,6 +250,23 @@ header {
     margin-bottom: 1.25rem; /* 20px → 1.25rem */
 }
 
+
+.cat-animation {
+    animation: jump 0.75s ease-in-out 1 forwards;
+
+    }
+
+    @keyframes jump {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-200px);
+        }
+    }
+
+
 /********* GAME END *********/
 
 #game-end {
