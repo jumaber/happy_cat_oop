@@ -87,6 +87,5 @@ if(obstacle.collide(cat)) {
 
 ## States and Screen Transitions
 - **Start Screen**: Game title, cat selection, and Play button
-- **Instruction Screen**: Explains cat controls (arrow keys for left/right, spacebar for jumping), objectives (catch fish, avoid bombs)
 - **Game Screen**: Main gameplay area with falling items
 - **Game End Screen**: Displays final score and game outcome (win or lose)
