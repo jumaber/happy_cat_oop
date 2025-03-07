@@ -26,22 +26,22 @@ window.onload = function () {
   document.addEventListener("mouseover", () => {
     introSong.play().catch(error => console.log("Autoplay blocked:", error));
     introSong.volume = 0.1;
-}, { once: true }); // This will play the sound only once
+  }, { once: true }); // This will play the sound only once
 
 
   // **** TOGGLE MUSIC IN ALL SCREENS ****
- document.getElementById("sound-toggle-intro").addEventListener("click", () => {
+  document.getElementById("sound-toggle-intro").addEventListener("click", () => {
     game.toggleMusic("intro");
-});
+  });
 
-document.getElementById("sound-toggle-play").addEventListener("click", () => {
-    game.toggleMusic("play");
-});
+  document.getElementById("sound-toggle-play").addEventListener("click", () => {
+      game.toggleMusic("play");
+  });
 
-document.getElementById("sound-toggle-end").addEventListener("click", () => {
-    game.toggleMusic("end");
-});
-   
+  document.getElementById("sound-toggle-end").addEventListener("click", () => {
+      game.toggleMusic("end");
+  });
+    
 
   // **** PAUSE THE GAME **** 
   const pauseGame = document.getElementById("pause-game");
@@ -63,11 +63,11 @@ document.getElementById("sound-toggle-end").addEventListener("click", () => {
 
   
   // **** RESTART THE GAME FROM THE PLAY SCREEN **** 
-const restart = document.getElementById("restart-game");
+  const restart = document.getElementById("restart-game");
 
-restart.addEventListener("click", () => {
-  game.restart();
-});
+  restart.addEventListener("click", () => {
+    game.restart();
+  });
 
      
 
@@ -135,6 +135,11 @@ restart.addEventListener("click", () => {
   // Movement: Listen for arrow key presses and call the move() method on the selected cat
   document.addEventListener("keydown", (event) => {
     if (!game.cat) return;
+
+    // If the game is paused, do nothing
+    if (game.isPaused) return;
+    
+    // Otherwise, move the cat
     game.cat.handleKeyDown(event.key);
 
     if (event.key === "ArrowUp") {
@@ -142,13 +147,15 @@ restart.addEventListener("click", () => {
     }
   });
 
+  document.addEventListener("keyup", (event) => {
+    if (!game.cat) return;
+    
+    // If the game is paused, do nothing
+    if (game.isPaused) return;
 
-
-
-document.addEventListener("keyup", (event) => {
-  if (!game.cat) return;
-  game.cat.handleKeyUp(event.key);
-});
-
+    // Otherwise, move the cat
+    game.cat.handleKeyUp(event.key);
+    
+  });
 
 };

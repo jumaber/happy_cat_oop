@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Happy Cat</title>
 
-        <title>Happy Cat</title>
-        
-        <link rel="stylesheet" href="./styles/style.css">
-        <link rel="icon" type="image/png" href="./img/favicon-96x96.png" sizes="96x96" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    </head>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./img/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
   <body class="background">
     <main>
-        <!-- #game-intro is initially shown on the game start screen -->
-        <div id="game-intro">
-            <header>
-                <h1>Happy Cat</h1>
-                <h2>Catch as many fish as you can!</h2>
-            </header>
-                
-            <div class="content-container">
-                <div class="cats-container">
-                    <div class ="nit" id="nit-cat">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
+      <!-- #game-intro is initially shown on the game start screen -->
+      <div id="game-intro">
+        <header>
+          <h1>Happy Cat</h1>
+          <h2>Catch as many fish as you can!</h2>
+        </header>
+
+        <div class="content-container">
+          <div class="cats-container">
+            <div class="nit" id="nit-cat">
+              <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
                             <g id="Nit">
                             <g id="Cat_Body_Nit">
                             <path id="Union_Nit" fill-rule="evenodd" clip-rule="evenodd" d="M168.199 6.12697V17.8649V59.1444V105.01C168.199 113.161 164.656 120.484 159.026 125.523V157.757C159.026 164.089 153.893 169.223 147.56 169.223C141.227 169.223 136.093 164.089 136.093 157.757V132.53H131.507V157.757C131.507 164.089 126.373 169.223 120.04 169.223C113.707 169.223 108.574 164.089 108.574 157.757V132.53H81.0538V157.757C81.0538 164.089 75.9201 169.223 69.5873 169.223C63.2545 169.223 58.1208 164.089 58.1208 157.757V132.53H55.063V157.757C55.063 164.089 49.9293 169.223 43.5965 169.223C37.2637 169.223 32.13 164.089 32.13 157.757V132.53V124.886V83.6061L32.1299 83.6062C4.6103 68.3175 -0.398115 34.6823 0.0236505 22.4513C0.635199 4.71645 29.0722 0.282725 30.6011 25.5091C30.6011 39.2689 35.1877 46.9133 48.1831 59.1442L48.1832 59.1444L87.1693 59.1444V17.8649V6.54784C87.1693 1.34814 93.2467 -1.47927 97.224 1.87004L116.218 17.8649H137.622L158.264 1.35157C162.268 -1.85178 168.199 0.999096 168.199 6.12697Z" fill="#22201D"/>
@@ -56,11 +62,11 @@
                             </g>
                             </g>
                             </g>
-                        </svg>
-                    </div>
+              </svg>
+            </div>
 
-                    <div class ="dia" id="dia-cat">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
+            <div class="dia" id="dia-cat">
+              <svg xmlns="http://www.w3.org/2000/svg" width="169" height="170" viewBox="0 0 169 170" fill="none">
                             <g id="Dia">
                             <g id="Cat_Body_Dia">
                             <path id="Union_Dia" fill-rule="evenodd" clip-rule="evenodd" d="M0.503891 6.58888V18.3268V59.6063V105.472C0.503891 113.623 4.04706 120.946 9.67711 125.985V158.218C9.67711 164.551 14.8109 169.685 21.1436 169.685C27.4764 169.685 32.6102 164.551 32.6102 158.218V132.992H37.1968V158.218C37.1968 164.551 42.3305 169.685 48.6633 169.685C54.9961 169.685 60.1298 164.551 60.1298 158.218V132.992H87.6495V158.218C87.6495 164.551 92.7833 169.685 99.1161 169.685C105.449 169.685 110.583 164.551 110.583 158.218V132.992H113.64V158.218C113.64 164.551 118.774 169.685 125.107 169.685C131.44 169.685 136.573 164.551 136.573 158.218V132.992V125.348V84.0681L136.573 84.0681C164.093 68.7794 169.101 35.1442 168.68 22.9133C168.068 5.17836 139.631 0.744639 138.102 25.971C138.102 39.7308 133.516 47.3752 120.52 59.6062L120.52 59.6063L81.534 59.6063V18.3268V7.00976C81.534 1.81005 75.4567 -1.01736 71.4793 2.33195L52.4855 18.3268H31.0813L10.4397 1.81349C6.43549 -1.38987 0.503891 1.46101 0.503891 6.58888Z" fill="white"/>
@@ -90,89 +96,90 @@
                             </g>
                             </g>
                             </g>
-                        </svg>
-                    </div>
-                </div>
-                <div class="button-container">
-                  <button class="button" id="play-button">Play</button>
-                </div>
-                <div class="mobile-only">
-                    <h2>This game is only available on computer 🥺 </h2>
-                </div>
-                <div id="sound-toggle-intro" class="sound-toggle">
-                    <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
-                    <h3>Music On</h3>
-                </div>
+              </svg>
             </div>
-        </div>
-        
-        <!-- #game-screen is initially hidden using CSS style display: none -->
-        <div id="game-screen">
-            <div id="level-container">
-                <div id="hearts-container">
-                    <div id="hearts-wrapper">
-                        <div id="hearts-score">
-                            <img src="/img/heart_empty.svg" id="heart1">
-                            <img src="/img/heart_empty.svg" id="heart2">
-                            <img src="/img/heart_empty.svg" id="heart3">
-                            <img src="/img/heart_empty.svg" id="heart4">
-                            <img src="/img/heart_empty.svg" id="heart5">
-                        </div>
-                    </div>
-                </div>
-                <div class="level">
-                    <h2>Level 0</h2>
-                </div>
-            </div>
+          </div>
 
-            <div class="toggle-container">
-                <div class="toggle-wrapper">
-                    <div id="restart-game">
-                            <img src="img/restart.svg" alt="Click to turn off sound">
-                            <h3>Restart</h3>
-                        </div>
-                    <div id="pause-game">
-                        <img src="img/pause.svg">
-                        <span>Pause Game</span>
-                    </div>
+          <div class="button-container">
+            <button class="button" id="play-button">Play</button>
+          </div>
 
-                    <div id="sound-toggle-play" class="sound-toggle">
-                        <img src="img/sound_is_on.svg" alt="Click to restart the game">
-                        <h3>Music On</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    
-        <!-- #game-end is initially hidden using CSS style display: none -->
-        <div id="game-end">
-            <header>
-                <h1>GAME OVER</h1>
-            </header>
-    
-            <div class="content-container">
-                <div class="cats-container">
-                        <img src="img/cats_sad.svg" alt="Nit is Sad">
-                </div>
-               
-                <button class="button" id="restart-button">Play Again</button>
-                
-                <div id="sound-toggle-end">
-                    <img src="audio/sound_is_on.svg" alt="Click to turn off sound">
-                    <h3>Purr On</h3>
-                </div>
-            </div>
-        </div>
-</main>
+          <div class="mobile-only">
+            <h2>This game is only available on computer 🥺 </h2>
+          </div>
 
-<!-- INTRO AUDIO FILES -->
+          <div id="sound-toggle-intro" class="sound-toggle">
+            <img src="audio/sound_is_on.svg" alt="Click to turn off sound" />
+            <h3>Music On</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- #game-screen is initially hidden using CSS style display: none -->
+      <div id="game-screen">
+        <div id="level-container">
+          <div id="hearts-container">
+            <div id="hearts-wrapper">
+              <div id="hearts-score">
+                <img src="/img/heart_empty.svg" id="heart1" />
+                <img src="/img/heart_empty.svg" id="heart2" />
+                <img src="/img/heart_empty.svg" id="heart3" />
+                <img src="/img/heart_empty.svg" id="heart4" />
+                <img src="/img/heart_empty.svg" id="heart5" />
+              </div>
+            </div>
+          </div>
+          <div class="level">
+            <h2>Level 0</h2>
+          </div>
+        </div>
+
+        <div class="toggle-container">
+          <div class="toggle-wrapper">
+            <div id="restart-game">
+              <img src="img/restart.svg" alt="Click to turn off sound" />
+              <h3>Restart</h3>
+            </div>
+            <div id="pause-game">
+              <img src="img/pause.svg" />
+              <span>Pause Game</span>
+            </div>
+            <div id="sound-toggle-play" class="sound-toggle">
+              <img
+                src="img/sound_is_on.svg"
+                alt="Click to restart the game"
+              />
+              <h3>Music On</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #game-end is initially hidden using CSS style display: none -->
+      <div id="game-end">
+        <header>
+          <h1>GAME OVER</h1>
+        </header>
+        <div class="content-container">
+          <div class="cats-container">
+            <img src="img/cats_sad.svg" alt="Nit is Sad" />
+          </div>
+          <button class="button" id="restart-button">Play Again</button>
+          <div id="sound-toggle-end">
+            <img src="audio/sound_is_on.svg" alt="Click to turn off sound" />
+            <h3>Purr On</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- INTRO AUDIO FILES -->
     <audio id="miaow" src="audio/cat-meow.mp3"></audio>
     <audio id="intro-song" src="audio/intro-song.mp3"></audio>
     <audio id="click-sound" src="audio/click.mp3"></audio>
     <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
 
-<!-- GAME AUDIO FILES -->
+    <!-- GAME AUDIO FILES -->
     <audio id="play-game-song" src="audio/play-game.mp3"></audio>
     <audio id="move-cat-sound" src="audio/move-cat.mp3"></audio>
     <audio id="game-start-sound" src="audio/game-start.mp3"></audio>
@@ -180,23 +187,16 @@
     <audio id="game-over-sound" src="audio/lose_1.mp3"></audio>
     <audio id="heart-filled" src="audio/heart_filled.mp3"></audio>
 
-<!-- GAME END AUDIO FILES -->
+    <!-- GAME END AUDIO FILES -->
     <audio id="purr" src="audio/rico-purr.mp3"></audio>
     <audio id="click-sound" src="audio/click.mp3"></audio>
     <audio id="click-toggle" src="audio/click-toggle.mp3"></audio>
     <audio id="winner" src="audio/winner.mp3"></audio>
 
-      
-      
-<!-- JS FILES -->
-<script src="js/script.js"></script>  
-<script src="js/game.js"></script>
-<script src="js/cat.js"></script>
-<script src="js/obstacles.js"></script>
-
-
-
- 
-
-</body>
+    <!-- JS FILES -->
+    <script src="js/script.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/cat.js"></script>
+    <script src="js/obstacles.js"></script>
+  </body>
 </html>

@@ -12,8 +12,7 @@ class Cat {
     this.positionYPercent = 50;
     this.direction = "left";
 
-
-    // Property controling the steps (speed) of the cat
+    // Property controlling the steps (speed) of the cat
     this.steps = 1;
 
     // Create the cat’s <img> element
@@ -33,7 +32,7 @@ class Cat {
     // Set the cat’s initial left and width (in percentages)
     this.updateCatStyles();
 
-    // get reference to your move-cat-sound:
+    // Get reference to your move-cat-sound
     this.moveSound = document.getElementById("move-cat-sound");
   }
 
@@ -53,7 +52,7 @@ class Cat {
     this.element.style.left = this.positionXPercent + "%";
     this.element.style.width = this.widthPercent + "%";
 
-    // Scale can't height automatically:
+    // Scale cat's height automatically
     this.element.style.height = "auto";
   }
 
@@ -67,9 +66,9 @@ class Cat {
     }
     // Update the cat sprite
     this.element.src =
-      this.type === "dia" 
-      ? "img/dia_move_left.svg" 
-      : "img/nit_move_left.svg";
+      this.type === "dia"
+        ? "img/dia_move_left.svg"
+        : "img/nit_move_left.svg";
 
     // Re-apply styles with the new position
     this.updateCatStyles();
@@ -78,7 +77,6 @@ class Cat {
   // Move right in percentage terms
   moveRight() {
     this.direction = "right";
-
     // Move right by 5%
     this.positionXPercent += this.steps;
     if (this.moveSound) {
@@ -86,51 +84,54 @@ class Cat {
     }
     // Update the cat sprite
     this.element.src =
-      this.type === "dia" 
-      ? "img/dia_move_right.svg" 
-      : "img/nit_move_right.svg";
+      this.type === "dia"
+        ? "img/dia_move_right.svg"
+        : "img/nit_move_right.svg";
 
     // Re-apply styles with the new position
     this.updateCatStyles();
   }
 
-handleKeyDown(key) {
-  if (key === "ArrowLeft") this.moveLeft();
-  else if (key === "ArrowRight") this.moveRight();
-}
-
-
-handleKeyUp(key) {
-  if (key === "ArrowLeft") {
-    this.element.src = this.type === "dia"
-      ? "img/dia_default_left.svg"
-      : "img/nit_default_left.svg";
-  } else if (key === "ArrowRight") {
-    this.element.src = this.type === "dia"
-      ? "img/dia_default_right.svg"
-      : "img/nit_default_right.svg";
-  }
-}
-
-jump() {
-  console.log("Jump! Current direction:", this.direction);
-
-  this.element.classList.add("cat-animation");
-  setTimeout(() => {
-    this.element.classList.remove("cat-animation");
-  }, 1000);
-
-  if (this.direction === "right") {
-    this.element.src = this.type === "dia"
-      ? "img/dia_default_right.svg"
-      : "img/nit_default_right.svg";
-  } else {
-    this.element.src = this.type === "dia"
-      ? "img/dia_default_left.svg"
-      : "img/nit_default_left.svg";
-  }
-}
-
-
+  handleKeyDown(key) {
+    if (key === "ArrowLeft") {
+      this.moveLeft();
+    } else if (key === "ArrowRight") {
+      this.moveRight();
+    }
   }
 
+  handleKeyUp(key) {
+    if (key === "ArrowLeft") {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_left.svg"
+          : "img/nit_default_left.svg";
+    } else if (key === "ArrowRight") {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_right.svg"
+          : "img/nit_default_right.svg";
+    }
+  }
+
+  jump() {
+    console.log("Jump! Current direction:", this.direction);
+
+    this.element.classList.add("cat-animation");
+    setTimeout(() => {
+      this.element.classList.remove("cat-animation");
+    }, 1000);
+
+    if (this.direction === "right") {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_right.svg"
+          : "img/nit_default_right.svg";
+    } else {
+      this.element.src =
+        this.type === "dia"
+          ? "img/dia_default_left.svg"
+          : "img/nit_default_left.svg";
+    }
+  }
+}
