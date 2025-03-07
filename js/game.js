@@ -48,7 +48,7 @@ class Game {
         setTimeout(() => {
             this.playGameSong.play();
             this.playGameSong.loop = true;
-            this.playGameSong.volume = 0.3;
+            this.playGameSong.volume = 0.1;
         }, 300);
 
         // Set your initial level or at least set this.speed, spawnRate, etc.
