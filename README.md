@@ -46,9 +46,8 @@ Welcome to **Happy Cat**, a fun-filled, feline adventure! Choose your favorite c
 
 ## Backlog
 
-- [ ] Add new obstacles or bonuses with unique interactionsgit
+- [ ] Add new obstacles or bonuses with unique interactions
 - [ ] Add qualities for each cat
-- [ ] Improve Pause function
 
 ## States and Screen Transitions
 
